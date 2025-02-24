@@ -33,12 +33,10 @@ const flokkSchema = new Schema({
             ref: "Reinsdyr",
         },
     ],
-    beiteområder: [
-        {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: "Beiteområde",
-        },
-    ],
+    beiteområde: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Beiteområde",
+    },
 });
 
 const Flokk = mongoose.model("Flokk", flokkSchema);
