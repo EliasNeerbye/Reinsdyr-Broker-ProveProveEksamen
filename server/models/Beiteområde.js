@@ -1,15 +1,41 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
+const BEITEOMRÅDE_FYLKER_MAPPING = {
+    Sør: ["Trøndelag", "Nordland", "Jämtland", "Västernorrland"],
+    Ume: ["Västerbotten"],
+    Pite: ["Norrbotten"],
+    Lule: ["Nordland", "Norrbotten"],
+    Nord: ["Finnmark", "Troms", "Nordland", "Norrbotten", "Lappi"],
+    Enare: ["Lappi"],
+    Skolt: ["Lappi", "Murmansk oblast"],
+    Akkala: ["Murmansk oblast"],
+    Kildin: ["Murmansk oblast"],
+    Ter: ["Murmansk oblast"],
+};
+
 const beiteområdeSchema = new Schema({
     primærBeiteområde: {
         type: String,
-        enum: ["Sør", "Ume", "Pite", "Lule", "Nord", "Enare", "Skolt", "Akkala", "Kildin", "Ter"],
+        enum: Object.keys(BEITEOMRÅDE_FYLKER_MAPPING),
         required: true,
     },
     fylker: [
         {
             type: String,
+            enum: [
+                "Nordland",
+                "Troms",
+                "Finnmark",
+                "Trøndelag",
+                "Norrbotten",
+                "Västerbotten",
+                "Jämtland",
+                "Västernorrland",
+                "Lappi",
+                "Murmansk oblast",
+                "Republikken Karelen",
+            ],
             required: true,
         },
     ],
@@ -21,38 +47,13 @@ const beiteområdeSchema = new Schema({
     ],
 });
 
+beiteområdeSchema.pre("save", function (next) {
+    if (this.isModified("primærBeiteområde") || this.isNew) {
+        this.fylker = BEITEOMRÅDE_FYLKER_MAPPING[this.primærBeiteområde] || [];
+    }
+    next();
+});
+
 const Beiteområde = mongoose.model("Beiteområde", beiteområdeSchema);
-
-// Eksempler på data basert på søkeresultatene:
-
-const sørsamiskBeiteområde = new Beiteområde({
-    primærBeiteområde: "Sør",
-    fylker: ["Nordland", "Trøndelag", "Innlandet"],
-});
-
-const lulesamiskBeiteområde = new Beiteområde({
-    primærBeiteområde: "Lule",
-    fylker: ["Nordland"],
-});
-
-const nordsamiskBeiteområde = new Beiteområde({
-    primærBeiteområde: "Nord",
-    fylker: ["Troms og Finnmark"],
-});
-
-const enaresamiskBeiteområde = new Beiteområde({
-    primærBeiteområde: "Enare",
-    fylker: ["Lappland"], // Merk: Dette er i Finland
-});
-
-const skoltesamiskBeiteområde = new Beiteområde({
-    primærBeiteområde: "Skolt",
-    fylker: ["Troms og Finnmark"], // For Neiden og Pasvik i Sør-Varanger kommune
-});
-
-const kildinsamiskBeiteområde = new Beiteområde({
-    primærBeiteområde: "Kildin",
-    fylker: ["Murmansk"], // Merk: Dette er i Russland
-});
 
 module.exports = Beiteområde;
