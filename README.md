@@ -29,38 +29,38 @@ erDiagram
         string navn
         string epost
         string passord
-        enum kontaktSpraak "Sør|Ume|Pite|Lule|Nord|Enare|Skolt|Akkala|Kildin|Ter"
-        string telefonnummer
-        ObjectId[] flokker "Referanser til Flokk IDer"
+        string telefon
+        enum kontaktspraak "Sør|Ume|Pite|Lule|Nord|Enare|Skolt|Akkala|Kildin|Ter"
+        ObjectId[] flokker "Referanser til Flokk"
     }
     
     Flokk {
         ObjectId _id
-        ObjectId eierId
+        ObjectId eierId "Ref: Eier"
         string flokkNavn
         string flokkSerienummer
         string merkeNavn
         string merkeBildelenke
-        ObjectId[] reinsdyr "Referanser til Reinsdyr IDer"
-        ObjectId[] beiteomraader "Referanser til Beiteområde IDer"
+        ObjectId[] reinsdyr "Referanser til Reinsdyr"
+        ObjectId beiteomraade "Ref: Beiteomraade"
     }
     
     Reinsdyr {
         ObjectId _id
         string serienummer
         string navn
-        ObjectId flokkId
-        date foodselsdato
+        ObjectId flokkId "Ref: Flokk"
+        date fodselsdato
     }
 
     Beiteomraade {
         ObjectId _id
-        enum primeerBeiteomraade "Sør|Ume|Pite|Lule|Nord|Enare|Skolt|Akkala|Kildin|Ter"
-        string[] fylker
-        ObjectId[] flokker "Referanser til Flokk IDer"
+        enum primaerBeiteomraade "Sør|Ume|Pite|Lule|Nord|Enare|Skolt|Akkala|Kildin|Ter"
+        enum[] fylker "Nordland|Trøndelag|Innlandet|Troms og Finnmark|Lappland|Murmansk"
+        ObjectId[] flokker "Referanser til Flokk"
     }
 
-    Eier ||--o{ Flokk : eier
-    Flokk }o--o{ Reinsdyr : "inneholder/tilhører"
-    Flokk }o--o{ Beiteomraade : "beiter i/brukes av"
+    Eier ||--o{ Flokk : har
+    Flokk ||--o{ Reinsdyr : inneholder
+    Flokk }o--|| Beiteomraade : "beiter i"
 ```
