@@ -18,3 +18,49 @@
 | UFW | DevOps | Ukomplisert brannmur for serversikkerhet |
 | SSH | DevOps | Secure Shell for ekstern servertilgang |
 | Helmet | Sikkerhet | Samling av sikkerhetsmiddleware for Express-applikasjoner |
+
+
+## ER Diagram:
+
+```mermaid
+erDiagram
+    Eier {
+        ObjectId _id
+        string navn
+        string epost
+        string passord
+        enum kontaktSpraak "Sør|Ume|Pite|Lule|Nord|Enare|Skolt|Akkala|Kildin|Ter"
+        string telefonnummer
+        ObjectId[] flokker "Referanser til Flokk IDer"
+    }
+    
+    Flokk {
+        ObjectId _id
+        ObjectId eierId
+        string flokkNavn
+        string flokkSerienummer
+        string merkeNavn
+        string merkeBildelenke
+        ObjectId[] reinsdyr "Referanser til Reinsdyr IDer"
+        ObjectId[] beiteomraader "Referanser til Beiteområde IDer"
+    }
+    
+    Reinsdyr {
+        ObjectId _id
+        string serienummer
+        string navn
+        ObjectId flokkId
+        date foodselsdato
+    }
+
+    Beiteomraade {
+        ObjectId _id
+        enum primeerBeiteomraade "Sør|Ume|Pite|Lule|Nord|Enare|Skolt|Akkala|Kildin|Ter"
+        string[] fylker
+        ObjectId[] flokker "Referanser til Flokk IDer"
+    }
+
+    Eier ||--o{ Flokk : eier
+    Flokk }o--o{ Reinsdyr : "inneholder/tilhører"
+    Flokk }o--o{ Beiteomraade : "beiter i/brukes av"
+```
