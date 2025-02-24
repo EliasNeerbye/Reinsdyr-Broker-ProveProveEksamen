@@ -18,6 +18,7 @@
 | UFW | DevOps | Ukomplisert brannmur for serversikkerhet |
 | SSH | DevOps | Secure Shell for ekstern servertilgang |
 | Helmet | Sikkerhet | Samling av sikkerhetsmiddleware for Express-applikasjoner |
+| CORS | Sikkerhet | Cross-Origin Sikkerhetsmiddleware |
 
 
 ## ER Diagram:
