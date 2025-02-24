@@ -14,9 +14,10 @@ app.use(express.static("public"));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-const mongoConnectionString = process.env.PROD_TRUE
-    ? `mongodb://${process.env.MONGO_USER}:${process.env.MONGO_PWD}@${process.env.MONGO_IP}/reindeerBroker`
-    : `mongodb://${process.env.MONGO_IP}/reindeerBroker`;
+const mongoConnectionString =
+    process.env.PROD_TRUE === "true"
+        ? `mongodb://${process.env.MONGO_USER}:${process.env.MONGO_PWD}@${process.env.MONGO_IP}/reindeerBroker`
+        : `mongodb://${process.env.MONGO_IP}/reindeerBroker`;
 
 mongoose
     .connect(mongoConnectionString)
@@ -38,9 +39,9 @@ app.use(
             ttl: 1 * 24 * 60 * 60,
         }),
         cookie: {
-            secure: process.env.PROD_TRUE,
+            secure: process.env.PROD_TRUE === "true",
             httpOnly: true,
-            sameSite: "lax",
+            // sameSite: "lax",
             maxAge: 1 * 24 * 60 * 60 * 1000,
         },
     })
@@ -65,6 +66,10 @@ app.use(
 );
 
 app.use(helmet());
+
+const authRoutes = require("./routes/authRoutes");
+
+app.use("/auth", authRoutes);
 
 app.listen(process.env.PORT);
 console.warn(`Server is listening on: ${origin}`);
