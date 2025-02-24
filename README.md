@@ -23,44 +23,55 @@
 ## ER Diagram:
 
 ```mermaid
+%%{init: {
+  'theme': 'base',
+  'themeVariables': {
+    'primaryColor': '#BBDEFB',
+    'primaryTextColor': '#000',
+    'primaryBorderColor': '#2196F3',
+    'lineColor': '#2196F3',
+    'textColor': '#333'
+  }
+}}%%
+
 erDiagram
     Eier {
         ObjectId _id
-        string navn
-        string epost
-        string passord
-        string telefon
-        enum kontaktspraak "Sør|Ume|Pite|Lule|Nord|Enare|Skolt|Akkala|Kildin|Ter"
-        ObjectId[] flokker "Referanser til Flokk"
+        String navn
+        String epost "unique"
+        String passord
+        String telefon "unique"
+        String kontaktspraak "Soer|Ume|Pite|Lule|Nord|Enare|Skolt|Akkala|Kildin|Ter"
+        ObjectId[] flokker "Ref: Flokk"
     }
     
     Flokk {
         ObjectId _id
-        ObjectId eierId "Ref: Eier"
-        string flokkNavn
-        string flokkSerienummer
-        string merkeNavn
-        string merkeBildelenke
-        ObjectId[] reinsdyr "Referanser til Reinsdyr"
+        ObjectId eierId "Ref: Eier, unique"
+        String flokkNavn
+        String flokkSerienummer "unique"
+        String merkeNavn "unique"
+        String merkeBildelenke "unique"
+        ObjectId[] reinsdyr "Ref: Reinsdyr"
         ObjectId beiteomraade "Ref: Beiteomraade"
     }
     
     Reinsdyr {
         ObjectId _id
-        string serienummer
-        string navn
+        String serienummer "unique"
+        String navn
         ObjectId flokkId "Ref: Flokk"
-        date fodselsdato
+        Date foedselsdato
     }
 
     Beiteomraade {
         ObjectId _id
-        enum primaerBeiteomraade "Sør|Ume|Pite|Lule|Nord|Enare|Skolt|Akkala|Kildin|Ter"
-        enum[] fylker "Nordland|Trøndelag|Innlandet|Troms og Finnmark|Lappland|Murmansk"
-        ObjectId[] flokker "Referanser til Flokk"
+        String primaerBeiteomraade "Soer|Ume|Pite|Lule|Nord|Enare|Skolt|Akkala|Kildin|Ter"
+        String[] fylker "Nordland|Troms|Finnmark|Troendelag|Norrbotten|Vaesterbotten|Jaemtland|Vaesternorrland|Lappi|Murmansk oblast|Republikken Karelen"
+        ObjectId[] flokker "Ref: Flokk"
     }
 
-    Eier ||--o{ Flokk : har
-    Flokk ||--o{ Reinsdyr : inneholder
+    Eier ||--o{ Flokk : "har"
+    Flokk ||--o{ Reinsdyr : "inneholder"
     Flokk }o--|| Beiteomraade : "beiter i"
 ```
