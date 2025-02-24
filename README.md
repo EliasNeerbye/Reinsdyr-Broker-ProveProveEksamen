@@ -4,22 +4,21 @@
 
 | Teknologi | Kategori | Beskrivelse |
 |-----------|----------|-------------|
-| Node.js | Backend | JavaScript-kjøretidsmiljø for serversideeksekvering |
-| Express.js | Backend | Webapplikasjonsrammeverk for håndtering av ruter og middleware |
-| MongoDB | Database | NoSQL-database for lagring av reinsdyr- og brukerdata |
-| Mongoose | Database | MongoDB objektmodelleringsverktøy for Node.js, forenkler databaseoperasjoner |
+| Node.js | Backend | JavaScript-runtime |
+| Express.js | Backend | Webserver framework for håndtering av ruter og middleware |
+| MongoDB | Database | NoSQL-database for lagring av data |
+| Mongoose | Database | MongoDB ORM for Node.js, forenkler databaseoperasjoner |
 | Express-session | Sikkerhet | Sesjonshåndtering for brukerautentisering |
 | Connect-mongo | Sikkerhet | MongoDB sesjonslagring for Express-session |
 | Bcrypt | Sikkerhet | Passordkrypteringsbibliotek for sikker brukerautentisering |
-| EJS | Frontend | Mal-motor for serverside-rendering |
+| EJS | Frontend | Template-engine for serverside-rendering |
 | Dotenv | Verktøy | Håndtering av miljøvariabler |
-| PM2 | DevOps | Prosesshåndterer for Node.js-applikasjoner i produksjon |
-| Nginx | DevOps | Webserver og omvendt proxy |
-| UFW | DevOps | Ukomplisert brannmur for serversikkerhet |
-| SSH | DevOps | Secure Shell for ekstern servertilgang |
 | Helmet | Sikkerhet | Samling av sikkerhetsmiddleware for Express-applikasjoner |
 | CORS | Sikkerhet | Cross-Origin Sikkerhetsmiddleware |
-
+| PM2 | DevOps | Process-handler for Node.js-applikasjoner i produksjon |
+| Nginx | DevOps | Webserver og omvendt proxy |
+| UFW | DevOps | Brannmur for serversikkerhet |
+| SSH | DevOps | Remote tilgang til server |
 
 ## ER Diagram:
 
