@@ -25,6 +25,11 @@ const eierSchema = new Schema({
         enum: ["Sør", "Ume", "Pite", "Lule", "Nord", "Enare", "Skolt", "Akkala", "Kildin", "Ter"],
         required: true,
     },
+    rolle: {
+        type: String,
+        enum: ["Admin", "User"],
+        default: "User",
+    },
     flokker: [
         {
             type: mongoose.Schema.Types.ObjectId,
