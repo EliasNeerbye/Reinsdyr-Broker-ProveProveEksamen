@@ -1,6 +1,7 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const session = require("express-session");
+const cors = require("cors");
 const MongoStore = require("connect-mongo");
 const fileupload = require("express-fileupload");
 
@@ -44,6 +45,19 @@ app.use(
             // sameSite: "lax",
             maxAge: 1 * 24 * 60 * 60 * 1000,
         },
+    })
+);
+
+app.use(
+    cors({
+        origin: process.env.PROD_TRUE === "true"
+            ? `http://${process.env.APP_IP}`
+            : `http://${process.env.APP_IP}:${process.env.PORT}`,
+        methods: ["GET", "POST", "PUT", "DELETE"],
+        allowedHeaders: ["Content-Type", "Authorization", "X-Requested-With", "Accept", "Origin"],
+        exposedHeaders: ["Set-Cookie", "Content-Range", "X-Content-Range"],
+        credentials: false,
+        maxAge: 1000 * 60 * 60 * 24 * 1
     })
 );
 
