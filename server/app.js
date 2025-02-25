@@ -1,7 +1,5 @@
 const express = require("express");
 const mongoose = require("mongoose");
-const helmet = require("helmet");
-const cors = require("cors");
 const session = require("express-session");
 const MongoStore = require("connect-mongo");
 const fileupload = require("express-fileupload");
@@ -46,24 +44,6 @@ app.use(
             // sameSite: "lax",
             maxAge: 1 * 24 * 60 * 60 * 1000,
         },
-    })
-);
-
-const origin = process.env.PROD_TRUE === "true"
-    ? `http://${process.env.APP_IP}`
-    : `http://${process.env.APP_IP}:${process.env.PORT}`;
-const methods = ["GET", "POST", "PUT", "DELETE"];
-const allowedHeaders = ["Content-Type", "Authorization", "X-Requested-With", "Accept", "Origin"];
-const exposedHeaders = ["Set-Cookie", "Content-Range", "X-Content-Range"];
-const maxAge = 1000 * 60 * 60 * 24 * 1;
-
-app.use(
-    cors({
-        origin,
-        methods,
-        allowedHeaders,
-        exposedHeaders,
-        maxAge,
     })
 );
 
