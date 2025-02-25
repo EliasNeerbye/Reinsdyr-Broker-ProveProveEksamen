@@ -145,7 +145,16 @@ async function search() {
             document.getElementById("resultDiv").innerHTML = "<p>Feil ved søk</p>";
         }
     } else if (searchInput.length === 0) {
-        document.getElementById("resultDiv").innerHTML = "";
+        document.getElementById("resultDiv").innerHTML = `
+        <h2>Søk etter:</h2>
+        <ul>
+            <li>Navn</li>
+            <li>Tlf</li>
+            <li>Serienummer</li>
+            <li>Språk</li>
+            <li><i>Og mye annet!</i></li>
+        </ul>
+        `;
     } else {
         document.getElementById("resultDiv").innerHTML = "<p>Skriv minst 3 tegn for å søke</p>";
     }

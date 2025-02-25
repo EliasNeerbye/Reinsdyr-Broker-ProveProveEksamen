@@ -11,6 +11,7 @@ const searchFunction = require("../controllers/pages/searchFunction");
 // Auth
 const registerPage = require("../controllers/pages/registerPage");
 const loginPage = require("../controllers/pages/loginPage");
+const logoutPage = require("../controllers/pages/logoutPage");
 
 // Reinsdyr
 const registerReinPage = require("../controllers/pages/registerReinPage");
@@ -25,8 +26,9 @@ router.get("/", indexPage);
 // router.get("/map", mapPage);
 router.get("/search", searchFunction);
 
-// router.get("/register", registerPage);
-// router.get("/login", loginPage);
+router.get("/register", registerPage);
+router.get("/login", loginPage);
+router.get("/logout", logoutPage);
 
 // router.get("/registerRein", registerReinPage);
 
