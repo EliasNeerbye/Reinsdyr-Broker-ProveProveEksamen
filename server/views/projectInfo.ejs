@@ -1,0 +1,40 @@
+<%- include('components/header.ejs') %>
+<body>
+    <%- include('components/nav.ejs') %>
+    <main>
+        <div class="faq-container">
+            <h2>Prosjekt Informasjon</h2>
+
+            <h3><span>🗂️</span> Prosjektoversikt</h3>
+            <p>Kukkik Ano er et digitalt administrasjonsverktøy for reinsdyreiere, utviklet for å forenkle dokumentasjon og sporing av reinsdyrflokker.</p>
+
+            <h3><span>📋</span> Database Struktur</h3>
+            <p>Prosjektet benytter følgende hovedmodeller:</p>
+            <ul>
+                <li><strong>Eier:</strong> Representerer brukere av systemet</li>
+                <li><strong>Flokk:</strong> Gruppering av reinsdyr under en eier</li>
+                <li><strong>Reinsdyr:</strong> Individuell registrering av reinsdyr</li>
+                <li><strong>Beiteområde:</strong> Geografiske områder for reinbeite</li>
+            </ul>
+
+            <h3><span>🗺️</span> ER Diagram</h3>
+            <p>Nedenfor er en detaljert oversikt over databasestrukturen:</p>
+            <div class="er-diagram-container">
+                <img src="/assets/images/ERdiagram.png" alt="ER Diagram for Kukkik Ano" />
+            </div>
+
+            <h3><span>🚀</span> Prosjektplanlegging</h3>
+            <p>Prosjektutviklingen følges opp på GitHub Projects:</p>
+            <p><a href="https://github.com/users/EliasNeerbye/projects/5" target="_blank" rel="noopener noreferrer">🔗 Prosjekt Tavle</a></p>
+
+            <h3><span>📦</span> Teknologier</h3>
+            <ul>
+                <li>Backend: Node.js, Express.js</li>
+                <li>Database: MongoDB, Mongoose</li>
+                <li>Frontend: EJS, JavaScript, CSS</li>
+                <li>Autentisering: Express-session, Bcrypt</li>
+            </ul>
+        </div>
+    </main>
+</body>
+<%- include('components/footer.ejs') %>

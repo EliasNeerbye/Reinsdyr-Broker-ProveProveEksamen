@@ -6,6 +6,7 @@ const isAuthenticated = require("../middleware/isAuthenticated");
 const indexPage = require("../controllers/pages/indexPage");
 const faqPage = require("../controllers/pages/faqPage");
 const mapPage = require("../controllers/pages/mapPage");
+const projectInfoPage = require("../controllers/pages/projectInfoPage");
 const searchFunction = require("../controllers/pages/searchFunction");
 
 // Auth
@@ -24,6 +25,7 @@ router.use(isAuthenticated);
 router.get("/", indexPage);
 router.get("/faq", faqPage);
 router.get("/map", mapPage);
+router.get("/projectInfo", projectInfoPage);
 router.get("/search", searchFunction);
 
 router.get("/register", registerPage);
