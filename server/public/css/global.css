@@ -105,6 +105,29 @@ nav h1:hover::after {
     width: 100%;
 }
 
+.home-indicator {
+    font-size: 0.7rem;
+    font-weight: normal;
+    opacity: 0.7;
+    margin-left: 0.5rem;
+    color: var(--accent-dark);
+    vertical-align: middle;
+    transition: all 0.2s ease;
+}
+
+nav h1:hover .home-indicator {
+    opacity: 1;
+    transform: translateX(-3px);
+}
+
+@media (max-width: 768px) {
+    .home-indicator {
+        display: block;
+        margin-left: 0;
+        font-size: 0.6rem;
+    }
+}
+
 nav div {
     display: flex;
     gap: 0.5rem;
