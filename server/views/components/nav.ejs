@@ -1,0 +1,12 @@
+<nav>
+    <h1>Reinsdyr Broker</h1>
+    <div>
+        <% if (!isAuthenticated) { %>
+        <button class="registerButtons" id="loginBtn">Login</button>
+        <button class="registerButtons" id="registerBtn">Registrer</button>
+        <% } else { %>
+        <button class="profileButton" id="profileBtn">Profil</button>
+        <button class="profileButton" id="logoutBtn">Logout</button>
+        <% } %>
+    </div>
+</nav>
