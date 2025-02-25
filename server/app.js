@@ -69,7 +69,13 @@ app.use(
     })
 );
 
-app.use(helmet());
+app.use(helmet({
+    hsts: false,
+    contentSecurityPolicy: false,
+    referrerPolicy: {
+        policy: 'no-referrer'
+    }
+}));
 
 const authRoutes = require("./routes/authRoutes");
 const reinsdyrRoutes = require("./routes/reinsdyrRoutes");
