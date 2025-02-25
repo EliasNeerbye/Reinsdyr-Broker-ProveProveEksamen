@@ -21,15 +21,15 @@ const registerFlokkPage = require("../controllers/pages/registerFlokkPage");
 router.use(isAuthenticated);
 
 router.get("/", indexPage);
-router.get("/faq", faqPage);
-router.get("/map", mapPage);
+// router.get("/faq", faqPage);
+// router.get("/map", mapPage);
 router.get("/search", searchFunction);
 
-router.get("/register", registerPage);
-router.get("/login", loginPage);
+// router.get("/register", registerPage);
+// router.get("/login", loginPage);
 
-router.get("/registerRein", registerReinPage);
+// router.get("/registerRein", registerReinPage);
 
-router.get("/registerFlokk", registerFlokkPage);
+// router.get("/registerFlokk", registerFlokkPage);
 
 module.exports = router;

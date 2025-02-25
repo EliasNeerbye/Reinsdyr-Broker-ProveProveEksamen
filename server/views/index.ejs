@@ -1,3 +1,30 @@
 <%- include('components/header.ejs') %>
-<body></body>
-<%- include('components/footer.ejs') %>
+<body>
+    <nav>
+        <h1>Reinsdyr Broker</h1>
+        <div>
+            <% if (!isAuthenticated) { %>
+                <button class="registerButtons" id="loginBtn">Login</button>
+                <button class="registerButtons" id="registerBtn">Registrer</button>
+            <% } else { %>
+                <button class="profileButton" id="profileBtn">Profil</button>
+            <% } %>
+        </div>
+    </nav>
+    <main>
+        <search>
+            <input type="text" name="search" id="searchBar" class="searchBar" placeholder="Søk..." list="searchOptions">
+            
+            <datalist id="searchOptions">
+                <% searchOptions.forEach(function(option) { %>
+                    <option value="<%= option %>"></option>
+                <% }); %>
+            </datalist>
+        </search>
+        <div class="results" id="resultDiv">
+
+        </div>
+    </main>
+    
+    <%- include('components/footer.ejs') %>
+</body>
