@@ -56,7 +56,6 @@ const methods = ["GET", "POST", "PUT", "DELETE"];
 const allowedHeaders = ["Content-Type", "Authorization", "X-Requested-With", "Accept", "Origin"];
 const exposedHeaders = ["Set-Cookie", "Content-Range", "X-Content-Range"];
 const maxAge = 1000 * 60 * 60 * 24 * 1;
-const credentials = true;
 
 app.use(
     cors({
@@ -65,17 +64,8 @@ app.use(
         allowedHeaders,
         exposedHeaders,
         maxAge,
-        credentials,
     })
 );
-
-app.use(helmet({
-    hsts: false,
-    contentSecurityPolicy: false,
-    referrerPolicy: {
-        policy: 'no-referrer'
-    }
-}));
 
 const authRoutes = require("./routes/authRoutes");
 const reinsdyrRoutes = require("./routes/reinsdyrRoutes");
