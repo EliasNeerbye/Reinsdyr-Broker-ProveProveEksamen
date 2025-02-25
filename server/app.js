@@ -2,6 +2,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const session = require("express-session");
 const cors = require("cors");
+const helmet = require("helmet");
 const MongoStore = require("connect-mongo");
 const fileupload = require("express-fileupload");
 
@@ -51,8 +52,8 @@ app.use(
 app.use(
     cors({
         origin: process.env.PROD_TRUE === "true"
-            ? `http://${process.env.APP_IP}`
-            : `http://${process.env.APP_IP}:${process.env.PORT}`,
+            ? `${process.env.SSL_STATE}://${process.env.APP_IP}`
+            : `${process.env.SSL_STATE}://${process.env.APP_IP}:${process.env.PORT}`,
         methods: ["GET", "POST", "PUT", "DELETE"],
         allowedHeaders: ["Content-Type", "Authorization", "X-Requested-With", "Accept", "Origin"],
         exposedHeaders: ["Set-Cookie", "Content-Range", "X-Content-Range"],
@@ -60,6 +61,8 @@ app.use(
         maxAge: 1000 * 60 * 60 * 24 * 1
     })
 );
+
+app.use(helmet());
 
 const authRoutes = require("./routes/authRoutes");
 const reinsdyrRoutes = require("./routes/reinsdyrRoutes");
