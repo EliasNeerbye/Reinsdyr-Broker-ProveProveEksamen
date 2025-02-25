@@ -1,8 +1,3 @@
-const deleteFlokk = async (req, res) => {
-    return req.status(404);
-};
-
-module.exports = deleteFlokk;
 const Flokk = require("../../models/Flokk");
 const Reinsdyr = require("../../models/Reinsdyr");
 const Eier = require("../../models/Eier");
