@@ -36,6 +36,7 @@ const flokkSchema = new Schema({
     beiteområde: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "Beiteområde",
+        required: true,
     },
 });
 

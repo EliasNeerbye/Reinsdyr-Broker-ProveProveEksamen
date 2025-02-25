@@ -4,6 +4,7 @@ const helmet = require("helmet");
 const cors = require("cors");
 const session = require("express-session");
 const MongoStore = require("connect-mongo");
+const fileupload = require("express-fileupload");
 
 require("dotenv").config();
 
@@ -13,6 +14,7 @@ app.set("view engine", "ejs");
 app.use(express.static("public"));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+app.use(fileupload({ limits: { fileSize: 50 * 1024 * 1024 }, createParentPath: true }));
 
 const mongoConnectionString =
     process.env.PROD_TRUE === "true"
@@ -68,8 +70,12 @@ app.use(
 app.use(helmet());
 
 const authRoutes = require("./routes/authRoutes");
+const reinsdyrRoutes = require("./routes/reinsdyrRoutes");
+const flokkRoutes = require("./routes/flokkRoutes");
 
 app.use("/auth", authRoutes);
+app.use("/reinsdyr", reinsdyrRoutes);
+app.use("/flokk", flokkRoutes);
 
 app.listen(process.env.PORT);
 console.warn(`Server is listening on: ${origin}`);
