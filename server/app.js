@@ -62,7 +62,7 @@ app.use(
     })
 );
 
-app.use(helmet());
+app.use(helmet({hsts:false}));
 
 const authRoutes = require("./routes/authRoutes");
 const reinsdyrRoutes = require("./routes/reinsdyrRoutes");
