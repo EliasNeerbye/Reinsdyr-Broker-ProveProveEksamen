@@ -16,6 +16,12 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(fileupload({ limits: { fileSize: 50 * 1024 * 1024 }, createParentPath: true }));
 
+// Stop SSL
+app.use((req, res, next) => {
+    res.setHeader('Strict-Transport-Security', 'max-age=0');
+    next();
+});
+
 const mongoConnectionString =
     process.env.PROD_TRUE === "true"
         ? `mongodb://${process.env.MONGO_USER}:${process.env.MONGO_PWD}@${process.env.MONGO_IP}/reindeerBroker`
