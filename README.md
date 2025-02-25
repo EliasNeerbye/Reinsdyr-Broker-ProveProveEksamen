@@ -75,3 +75,34 @@ erDiagram
     Flokk ||--o{ Reinsdyr : "inneholder"
     Flokk }o--|| Beiteomraade : "beiter i"
 ```
+
+## Nettverkskart
+```mermaid
+flowchart LR
+    %% Simple color scheme
+    classDef client fill:#6610f2,stroke:#ffffff,stroke-width:2px,color:#ffffff
+    classDef vm fill:#0d6efd,stroke:#ffffff,stroke-width:2px,color:#ffffff
+    classDef firewall fill:#dc3545,stroke:#ffffff,stroke-width:1px,color:#ffffff
+    classDef ssh fill:#212529,stroke:#ffffff,stroke-width:1px,color:#ffffff
+
+    %% Main flow - bidirectional
+    Internet([Internett/Brukere]) <--> UFW1{UFW Brannmur}
+    UFW1 <--> NodeJS[NodeJS Server VM]
+    NodeJS <--> UFW2{UFW Brannmur}
+    UFW2 <--> MongoDB[(MongoDB Database VM)]
+    
+    %% SSH connections
+    SSH([SSH-tilgang\nAdmin, Jens, Patrick, Geir, Monica]) -.-> UFW1
+    SSH -.-> UFW2
+    
+    %% Apply classes
+    class Internet client
+    class NodeJS,MongoDB vm
+    class UFW1,UFW2 firewall
+    class SSH ssh
+
+    %% Title
+    subgraph title [Kukkik Ano - Nettverksarkitektur]
+    end
+    style title fill:none,stroke:none
+```
