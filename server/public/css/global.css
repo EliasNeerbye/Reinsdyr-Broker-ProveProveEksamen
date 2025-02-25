@@ -1,20 +1,20 @@
 :root {
-    --primary: #f5b0bd; /* Pastel pink */
-    --primary-dark: #d9889a; /* Darker pink */
-    --primary-light: #ffd1da; /* Light pink */
-    --accent: #b0e0f5; /* Pastel blue */
-    --accent-dark: #7aa5c2; /* Darker blue */
-    --accent-light: #ddf3ff; /* Light blue */
-    --tertiary: #b8e0d2; /* Mint green */
-    --tertiary-dark: #8fb3a8; /* Darker mint */
-    --background: #fdfcf8; /* Cream */
-    --card-background: #ffffff; /* White */
-    --text-dark: #555555; /* Charcoal */
-    --text-light: #ffffff; /* White */
-    --error: #ff9494; /* Soft red */
-    --success: #a1dba5; /* Soft green */
-    --border: #eeeeee; /* Light gray */
-    --shadow: rgba(0, 0, 0, 0.07);
+    --primary: #e493a0; /* Darker pink for better contrast */
+    --primary-dark: #c16a7c; /* Even darker pink */
+    --primary-light: #ffd1da; /* Light pink - kept for backgrounds */
+    --accent: #81b7d9; /* Darker blue */
+    --accent-dark: #5785a2; /* Even darker blue */
+    --accent-light: #ddf3ff; /* Light blue - kept for backgrounds */
+    --tertiary: #8fc7af; /* Darker mint green */
+    --tertiary-dark: #6d9a85; /* Even darker mint */
+    --background: #fdfcf8; /* Cream - fine for background */
+    --card-background: #ffffff; /* White - fine for background */
+    --text-dark: #333333; /* Darker charcoal for better contrast */
+    --text-light: #ffffff; /* White - fine for light text */
+    --error: #d93838; /* Darker red for error messages */
+    --success: #4c9e53; /* Darker green for success messages */
+    --border: #cccccc; /* Darker gray border */
+    --shadow: rgba(0, 0, 0, 0.1); /* Slightly darker shadow */
 }
 
 /* ====== RESET & BASE STYLES ====== */
@@ -83,7 +83,7 @@ nav {
 nav h1 {
     font-size: 1.5rem;
     font-weight: 700;
-    color: var(--primary-dark);
+    color: #333333;
     cursor: pointer;
     margin-bottom: 0;
     position: relative;
@@ -124,7 +124,8 @@ button {
 
 .registerButtons {
     background-color: var(--accent);
-    color: var(--text-dark);
+    color: #333333;
+    font-weight: 600;
     border: 1px solid rgba(255, 255, 255, 0.6);
 }
 
@@ -136,7 +137,8 @@ button {
 
 .profileButton {
     background-color: var(--tertiary);
-    color: var(--text-dark);
+    color: #333333;
+    font-weight: 600;
     border: 1px solid rgba(255, 255, 255, 0.6);
 }
 
@@ -148,13 +150,13 @@ button {
 
 .submitBtn {
     background: linear-gradient(to right, var(--primary), var(--accent));
-    color: var(--text-dark);
+    color: #333333;
+    font-weight: 700;
     width: 100%;
     padding: 0.7rem;
     font-size: 0.95rem;
     margin-top: 1rem;
     transition: all 0.2s ease;
-    font-weight: 600;
     border-radius: 25px;
     letter-spacing: 0.5px;
 }
@@ -181,7 +183,7 @@ footer {
 }
 
 footer a {
-    color: var(--primary-dark);
+    color: #333333;
     text-decoration: none;
     font-weight: 500;
     transition: all 0.2s ease;
@@ -261,43 +263,106 @@ label {
 
 .form-message.error {
     display: block;
-    background-color: rgba(255, 148, 148, 0.1);
-    color: var(--error);
-    border: 1px solid rgba(255, 148, 148, 0.3);
+    background-color: rgba(217, 56, 56, 0.1);
+    color: #a92121;
+    border: 1px solid rgba(217, 56, 56, 0.3);
 }
 
 .form-message.success {
     display: block;
-    background-color: rgba(161, 219, 165, 0.1);
-    color: var(--success);
-    border: 1px solid rgba(161, 219, 165, 0.3);
+    background-color: rgba(76, 158, 83, 0.1);
+    color: #3b7841;
+    border: 1px solid rgba(76, 158, 83, 0.3);
+}
+
+/* ====== FORM GROUPS ====== */
+.form-group {
+    margin-bottom: 1.2rem;
+    position: relative;
+}
+
+.form-group small {
+    display: block;
+    margin-top: 0.3rem;
+    color: #555555;
+    font-size: 0.75rem;
+    padding-left: 0.5rem;
+}
+
+/* ====== FORM FOOTER ====== */
+.form-footer {
+    text-align: center;
+    margin-top: 1.5rem;
+    color: #555555;
+    font-size: 0.9rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--border);
+}
+
+/* ====== RESULTS TABLES ====== */
+.results-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 2px 8px var(--shadow);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.results-table th {
+    background-color: var(--accent-light);
+    color: #333333;
+    padding: 0.7rem;
+    text-align: left;
+    font-weight: 700;
+    font-size: 0.85rem;
+    letter-spacing: 0.5px;
+}
+
+.results-table td {
+    padding: 0.7rem;
+    border-bottom: 1px solid var(--border);
+    font-size: 0.85rem;
+}
+
+.results-table tr:last-child td {
+    border-bottom: none;
+}
+
+.results-table tr:nth-child(even) {
+    background-color: rgba(248, 248, 248, 0.5);
+}
+
+.results-table tr:hover {
+    background-color: rgba(225, 147, 160, 0.05);
 }
 
 /* ====== RESPONSIVE DESIGN ====== */
 @media (max-width: 768px) {
     nav {
-    padding: 0.75rem 1rem;
+        padding: 0.75rem 1rem;
     }
 
     main {
-    padding: 1.2rem 0.8rem;
+        padding: 1.2rem 0.8rem;
     }
 
     footer {
-    padding: 1rem 0.8rem;
-    gap: 1.2rem;
+        padding: 1rem 0.8rem;
+        gap: 1.2rem;
     }
 }
 
 /* ====== ANIMATION ====== */
 @keyframes fadeIn {
     from {
-    opacity: 0;
-    transform: translateY(10px);
+        opacity: 0;
+        transform: translateY(10px);
     }
     to {
-    opacity: 1;
-    transform: translateY(0);
+        opacity: 1;
+        transform: translateY(0);
     }
 }
 
