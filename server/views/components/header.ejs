@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title><%= title %></title>
+        <!-- Css -->
+        <% cssLinks.forEach(link => { %>
+        <link rel="stylesheet" href="<%= link %>" />
+        <% }); %>
+
+        <!-- Scripts -->
+        <% scriptLinks.forEach(script => { %>
+        <script src="<%= script %>" defer></script>
+        <% }); %>
+    </head>

@@ -72,10 +72,12 @@ app.use(helmet());
 const authRoutes = require("./routes/authRoutes");
 const reinsdyrRoutes = require("./routes/reinsdyrRoutes");
 const flokkRoutes = require("./routes/flokkRoutes");
+const getRoutes = require("./routes/getRoutes");
 
 app.use("/auth", authRoutes);
 app.use("/reinsdyr", reinsdyrRoutes);
 app.use("/flokk", flokkRoutes);
+app.use("/", getRoutes);
 
 app.listen(process.env.PORT);
 console.warn(`Server is listening on: ${origin}`);
