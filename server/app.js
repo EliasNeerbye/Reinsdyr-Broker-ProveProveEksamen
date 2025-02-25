@@ -19,6 +19,7 @@ app.use(fileupload({ limits: { fileSize: 50 * 1024 * 1024 }, createParentPath: t
 // Stop SSL
 app.use((req, res, next) => {
     res.removeHeader('Strict-Transport-Security');
+    res.setHeader('Origin-Agent-Cluster', '?1');
     next();
 });
 
