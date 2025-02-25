@@ -21,8 +21,6 @@ const mongoConnectionString =
         ? `mongodb://${process.env.MONGO_USER}:${process.env.MONGO_PWD}@${process.env.MONGO_IP}/reindeerBroker`
         : `mongodb://${process.env.MONGO_IP}/reindeerBroker`;
 
-console.log(mongoConnectionString);
-
 mongoose
     .connect(mongoConnectionString)
     .then(() => {
