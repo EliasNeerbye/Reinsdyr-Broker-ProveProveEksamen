@@ -389,3 +389,51 @@ search {
         margin: 10% auto;
     }
 }
+
+/* ====== ACTION BUTTONS CONTAINER ====== */
+.action-buttons-container {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+    justify-content: flex-end;
+    animation: fadeIn 0.5s ease;
+}
+
+/* Adjust the existing .add-btn class to match the new container */
+.add-btn {
+    display: inline-block;
+    padding: 0.6rem 1.2rem;
+    background: linear-gradient(to right, var(--primary-light), var(--accent-light));
+    color: var(--accent-dark);
+    border-radius: 20px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    box-shadow: 0 2px 5px var(--shadow);
+}
+
+.add-btn:hover {
+    background: linear-gradient(to right, var(--primary), var(--accent));
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px var(--shadow);
+    color: white;
+}
+
+/* Removing the old action-buttons class since it's no longer needed */
+.action-buttons {
+    display: none;
+}
+
+/* Media queries for responsiveness */
+@media (max-width: 768px) {
+    .action-buttons-container {
+        flex-direction: column;
+        gap: 0.5rem;
+        margin-bottom: 1rem;
+    }
+    
+    .add-btn {
+        text-align: center;
+    }
+}
