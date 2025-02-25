@@ -2,6 +2,13 @@
 <body>
     <%- include('components/nav.ejs') %>
     <main>
+        <% if (isAuthenticated) { %>
+        <div class="action-buttons-container">
+            <a href="/registerRein" class="add-btn">Legg til reinsdyr</a>
+            <a href="/registerFlokk" class="add-btn">Legg til flokk</a>
+        </div>
+        <% } %>
+        
         <search>
             <input type="text" name="search" id="searchBar" class="searchBar" placeholder="Søk..." list="searchOptions">
             
@@ -78,15 +85,9 @@
                             </table>
                         <% } %>
                     <% }); %>
-                    
-                    <div class="action-buttons">
-                        <a href="/registerRein" class="add-btn">Legg til reinsdyr</a>
-                        <a href="/registerFlokk" class="add-btn">Legg til flokk</a>
-                    </div>
                 <% } else { %>
                     <div class="empty-state">
                         <p>Du har ikke registrert noen flokker ennå.</p>
-                        <a href="/registerFlokk" class="add-btn">Registrer din første flokk</a>
                     </div>
                 <% } %>
             <% } else { %>
