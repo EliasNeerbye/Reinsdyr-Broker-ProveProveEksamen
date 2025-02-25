@@ -3,7 +3,7 @@ const createPageData = (req, options = {}) => {
         title: options.title + " | Reinsdyr Broker" || "Reindeer Broker",
         isAuthenticated: req.isAuthenticated || false,
         cssLinks: ["/css/global.css", ...options.cssLinks] || ["/css/global.css"],
-        scriptLinks: options.scriptLinks || [],
+        scriptLinks: ["/js/navFunctionality.js", ...options.scriptLinks] || ["/js/navFunctionality.js"],
     };
 
     return pageData;

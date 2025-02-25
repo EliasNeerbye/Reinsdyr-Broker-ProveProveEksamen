@@ -1,94 +1,166 @@
 /* ====== FORM CONTAINER ====== */
 .form-container {
     background-color: var(--card-background);
-    border-radius: 8px;
-    box-shadow: 0 3px 15px rgba(0, 0, 0, 0.08);
-    padding: 2.5rem;
+    border-radius: 15px;
+    box-shadow: 0 5px 20px var(--shadow);
+    padding: 2rem;
     width: 100%;
-    max-width: 500px;
-    margin: 2rem auto 0;
+    max-width: 450px;
+    margin: 1.5rem auto 0;
+    border: 1px solid var(--border);
+    position: relative;
+    overflow: hidden;
+}
+
+.form-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 5px;
+    background: linear-gradient(to right, var(--primary), var(--accent));
 }
 
 .form-container h2 {
-    margin-bottom: 1.8rem;
+    margin-bottom: 1.5rem;
     color: var(--primary-dark);
     text-align: center;
-    font-size: 1.8rem;
+    font-size: 1.6rem;
     position: relative;
+    padding-bottom: 0.5rem;
 }
 
-.form-container h2:after {
+.form-container h2::after {
     content: '';
     position: absolute;
-    bottom: -10px;
+    bottom: 0;
     left: 50%;
     transform: translateX(-50%);
-    width: 60px;
-    height: 3px;
-    background-color: var(--primary);
-    border-radius: 3px;
+    width: 50px;
+    height: 2px;
+    background: linear-gradient(to right, var(--primary), var(--accent));
+    border-radius: 2px;
 }
 
 /* ====== FORM GROUPS ====== */
 .form-group {
-    margin-bottom: 1.5rem;
+    margin-bottom: 1.2rem;
+    position: relative;
 }
 
 .form-group label {
     display: block;
-    margin-bottom: 0.5rem;
-    font-weight: 600;
+    margin-bottom: 0.4rem;
+    font-weight: 500;
     color: var(--primary-dark);
+    font-size: 0.9rem;
 }
 
 .form-group input,
 .form-group select {
     width: 100%;
-    padding: 0.8rem;
+    padding: 0.7rem 1rem;
     border: 1px solid var(--border);
-    border-radius: 4px;
-    font-size: 1rem;
+    border-radius: 20px;
+    font-size: 0.9rem;
     transition: all 0.3s ease;
+    background-color: var(--card-background);
 }
 
 .form-group input:focus,
 .form-group select:focus {
     outline: none;
     border-color: var(--primary);
-    box-shadow: 0 0 0 3px rgba(92, 141, 137, 0.2);
+    box-shadow: 0 0 0 3px rgba(245, 176, 189, 0.2);
 }
 
 .form-group small {
     display: block;
-    margin-top: 0.4rem;
-    color: #777;
-    font-size: 0.8rem;
+    margin-top: 0.3rem;
+    color: #888;
+    font-size: 0.75rem;
+    padding-left: 0.5rem;
 }
 
 /* ====== FORM FOOTER ====== */
 .form-footer {
     text-align: center;
-    margin-top: 2rem;
-    color: #777;
-    font-size: 0.95rem;
+    margin-top: 1.5rem;
+    color: #888;
+    font-size: 0.9rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--border);
 }
 
 .form-footer a {
-    color: var(--primary);
+    color: var(--primary-dark);
     text-decoration: none;
     font-weight: 600;
     transition: color 0.2s ease;
+    position: relative;
+    display: inline-block;
+    margin-left: 0.3rem;
 }
 
-.form-footer a:hover {
-    color: var(--primary-dark);
-    text-decoration: underline;
+.form-footer a::after {
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background-color: var(--primary);
+    transition: width 0.3s ease;
+}
+
+.form-footer a:hover::after {
+    width: 100%;
 }
 
 /* ====== RESPONSIVE DESIGN ====== */
 @media (max-width: 576px) {
     .form-container {
-        padding: 1.5rem;
-        margin-top: 1rem;
+    padding: 1.2rem;
+    margin-top: 1rem;
+    border-radius: 12px;
+    }
+    
+    .form-container h2 {
+    font-size: 1.4rem;
+    }
+}
+
+/* ====== ANIMATIONS ====== */
+.form-container {
+    animation: slideUp 0.5s ease forwards;
+}
+
+@keyframes slideUp {
+    from {
+    opacity: 0;
+    transform: translateY(20px);
+    }
+    to {
+    opacity: 1;
+    transform: translateY(0);
+    }
+}
+
+.form-group {
+    animation: fadeIn 0.5s ease forwards;
+    animation-delay: calc(var(--i, 0) * 0.1s);
+    opacity: 0;
+}
+
+.form-group:nth-child(1) { --i: 1; }
+.form-group:nth-child(2) { --i: 2; }
+.form-group:nth-child(3) { --i: 3; }
+.form-group:nth-child(4) { --i: 4; }
+.form-group:nth-child(5) { --i: 5; }
+
+@keyframes fadeIn {
+    to {
+    opacity: 1;
     }
 }
