@@ -2,7 +2,6 @@ const express = require("express");
 const mongoose = require("mongoose");
 const session = require("express-session");
 const cors = require("cors");
-const helmet = require("helmet");
 const MongoStore = require("connect-mongo");
 const fileupload = require("express-fileupload");
 
@@ -62,8 +61,6 @@ app.use(
     })
 );
 
-app.use(helmet())
-app.use(helmet.hsts({ maxAge: 0 }));
 
 const authRoutes = require("./routes/authRoutes");
 const reinsdyrRoutes = require("./routes/reinsdyrRoutes");
