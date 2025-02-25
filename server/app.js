@@ -18,7 +18,7 @@ app.use(fileupload({ limits: { fileSize: 50 * 1024 * 1024 }, createParentPath: t
 
 // Stop SSL
 app.use((req, res, next) => {
-    res.setHeader('Strict-Transport-Security', 'max-age=0');
+    res.removeHeader('Strict-Transport-Security');
     next();
 });
 
@@ -55,7 +55,9 @@ app.use(
     })
 );
 
-const origin = `${process.env.SSL_STATE}://${process.env.APP_IP}:${process.env.PORT}`;
+const origin = process.env.PROD_TRUE === "true"
+    ? `${process.env.SSL_STATE}://${process.env.APP_IP}`
+    : `${process.env.SSL_STATE}://${process.env.APP_IP}:${process.env.PORT}`;
 const methods = ["GET", "POST", "PUT", "DELETE"];
 const allowedHeaders = ["Content-Type", "Authorization", "X-Requested-With", "Accept", "Origin"];
 const exposedHeaders = ["Set-Cookie", "Content-Range", "X-Content-Range"];
@@ -74,21 +76,19 @@ app.use(
 );
 
 app.use(helmet({
+    hsts: false,
     contentSecurityPolicy: {
         directives: {
-            defaultSrc: ["'self'"],
-            scriptSrc: ["'self'"],
-            styleSrc: ["'self'"],
-            imgSrc: ["'self'"],
-            fontSrc: ["'self'"],
-            connectSrc: ["'self'"]
+            defaultSrc: ["'self'", 'http:'],
+            scriptSrc: ["'self'", 'http:', "'unsafe-inline'"],
+            styleSrc: ["'self'", 'http:', "'unsafe-inline'"],
+            imgSrc: ["'self'", 'http:', 'data:'],
+            fontSrc: ["'self'", 'http:'],
+            connectSrc: ["'self'", 'http:']
         }
     },
-    crossOriginOpenerPolicy: {
-        policy: 'same-origin'
-    },
     referrerPolicy: {
-        policy: 'strict-origin-when-cross-origin'
+        policy: 'no-referrer'
     }
 }));
 
