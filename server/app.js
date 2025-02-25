@@ -52,8 +52,9 @@ app.use(
 const origin = process.env.PROD_TRUE === "true"
     ? `http://${process.env.APP_IP}`
     : `http://${process.env.APP_IP}:${process.env.PORT}`;
-const methods = ["*"];
-const allowedHeaders = ["*"];
+const methods = ["GET", "POST", "PUT", "DELETE"];
+const allowedHeaders = ["Content-Type", "Authorization", "X-Requested-With", "Accept", "Origin"];
+const exposedHeaders = ["Set-Cookie", "Content-Range", "X-Content-Range"];
 const maxAge = 1000 * 60 * 60 * 24 * 1;
 const credentials = true;
 
@@ -62,6 +63,7 @@ app.use(
         origin,
         methods,
         allowedHeaders,
+        exposedHeaders,
         maxAge,
         credentials,
     })
