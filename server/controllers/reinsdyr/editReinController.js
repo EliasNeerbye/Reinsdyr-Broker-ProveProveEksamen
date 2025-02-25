@@ -79,12 +79,10 @@ const editRein = async (req, res) => {
                 });
             }
 
-            // Remove from old flokk
             await Flokk.findByIdAndUpdate(reinsdyr.flokkId, {
                 $pull: { reinsdyr: reinsdyr._id }
             });
 
-            // Add to new flokk
             await Flokk.findByIdAndUpdate(flokkId, {
                 $push: { reinsdyr: reinsdyr._id }
             });
