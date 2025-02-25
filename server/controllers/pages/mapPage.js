@@ -2,10 +2,6 @@ const { createPageData } = require("../../utils/pageUtils");
 
 const mapPage = async (req, res) => {
     try {
-        if (!req.isAuthenticated) {
-            return res.redirect("/");
-        }
-
         const pageData = createPageData(req, {
             title: "Kart",
             cssLinks: ["/css/home.css", "/css/map.css"],

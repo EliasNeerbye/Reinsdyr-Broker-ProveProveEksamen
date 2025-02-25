@@ -1,0 +1,95 @@
+/* FAQ Page Specific Styles */
+.faq-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+    background-color: var(--card-background);
+    border-radius: 15px;
+    box-shadow: 0 5px 20px var(--shadow);
+    border: 1px solid var(--border);
+    position: relative;
+    overflow: hidden;
+    animation: fadeIn 0.5s ease;
+}
+
+.faq-container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 5px;
+    background: linear-gradient(to right, var(--primary), var(--accent));
+}
+
+.faq-container h2 {
+    color: var(--primary-dark);
+    border-bottom: 2px solid var(--accent-light);
+    padding-bottom: 0.5rem;
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+.faq-container h3 {
+    color: var(--accent-dark);
+    margin-top: 1.5rem;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+    transition: transform 0.3s ease;
+}
+
+.faq-container h3:hover {
+    transform: translateX(5px);
+}
+
+.faq-container h3 span {
+    font-size: 1.5rem;
+}
+
+.faq-container p,
+.faq-container ul,
+.faq-container ol {
+    color: var(--text-dark);
+    line-height: 1.6;
+    margin-bottom: 1rem;
+}
+
+.faq-container ul,
+.faq-container ol {
+    padding-left: 2rem;
+}
+
+.faq-container ul {
+    list-style-type: disc;
+}
+
+.faq-container ol {
+    list-style-type: decimal;
+}
+
+.faq-container li {
+    margin-bottom: 0.5rem;
+}
+
+@media (max-width: 768px) {
+    .faq-container {
+        padding: 1.5rem 0.8rem;
+        margin: 0 0.5rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .faq-container h2 {
+        font-size: 1.4rem;
+    }
+
+    .faq-container h3 {
+        font-size: 1.1rem;
+    }
+
+    .faq-container h3 span {
+        font-size: 1.2rem;
+    }
+}

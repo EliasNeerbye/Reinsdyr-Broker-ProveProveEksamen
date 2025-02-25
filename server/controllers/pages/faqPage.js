@@ -2,10 +2,6 @@ const { createPageData } = require("../../utils/pageUtils");
 
 const faqPage = async (req, res) => {
     try {
-        if (!req.isAuthenticated) {
-            return res.redirect("/");
-        }
-
         const pageData = createPageData(req, {
             title: "Ofte stilte spørsmål",
             cssLinks: ["/css/home.css", "/css/faq.css"],
