@@ -1,0 +1,46 @@
+<%- include('components/header.ejs') %>
+<body>
+    <%- include('components/nav.ejs') %>
+    <main>
+        <div class="form-container">
+            <h2>Registrer ny flokk</h2>
+            <form id="registerFlokkForm" enctype="multipart/form-data">
+                <div class="form-group">
+                    <label for="flokkNavn">Flokknavn</label>
+                    <input type="text" id="flokkNavn" name="flokkNavn" required />
+                </div>
+                <div class="form-group">
+                    <label for="merkeNavn">Merkenavn</label>
+                    <input type="text" id="merkeNavn" name="merkeNavn" required />
+                </div>
+                <div class="form-group">
+                    <label for="flokkSerienummer">Flokk Serienummer (valgfritt)</label>
+                    <input type="text" id="flokkSerienummer" name="flokkSerienummer" />
+                    <small>Et unikt serienummer genereres automatisk hvis du ikke oppgir et</small>
+                </div>
+                <div class="form-group">
+                    <label for="beiteområde">Beiteområde</label>
+                    <select id="beiteområde" name="beiteområde" required>
+                        <option value="" disabled selected>Velg beiteområde</option>
+                        <% beiteOptions.forEach(function(option) { %>
+                        <option value="<%= option %>"><%= option %></option>
+                        <% }); %>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="merkeBildelenke">Bumerke Bildelenke (valgfritt)</label>
+                    <input type="text" id="merkeBildelenke" name="merkeBildelenke" />
+                    <small>Angi URL til et eksisterende bilde, eller last opp et nytt under</small>
+                </div>
+                <div class="form-group">
+                    <label for="merkeBilde">Last opp Bumerke Bilde</label>
+                    <input type="file" id="merkeBilde" name="merkeBilde" accept=".jpg,.jpeg,.png,.svg,.webp" />
+                    <small>Tillatte formater: JPG, JPEG, PNG, SVG, WEBP. Maks størrelse: 50MB</small>
+                </div>
+                <div class="form-message" id="registerFlokkMessage"></div>
+                <button type="submit" class="submitBtn">Registrer Flokk</button>
+            </form>
+        </div>
+    </main>
+</body>
+<%- include('components/footer.ejs') %>

@@ -5,7 +5,6 @@ const flokkSchema = new Schema({
     eierId: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "Eier",
-        unique: true,
         required: true,
     },
     flokkNavn: {

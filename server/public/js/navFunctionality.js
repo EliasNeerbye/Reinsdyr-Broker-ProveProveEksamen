@@ -3,6 +3,7 @@ function registerClicks() {
     const loginButton = document.getElementById("loginBtn");
     const profileButton = document.getElementById("profileBtn");
     const logoutButton = document.getElementById("logoutBtn");
+    const title = document.getElementById("title");
 
     if (registerButton) {
         registerButton.addEventListener("click", () => {
@@ -25,6 +26,12 @@ function registerClicks() {
     if (logoutButton) {
         logoutButton.addEventListener("click", () => {
             window.location.href = "/logout";
+        });
+    }
+
+    if (title) {
+        title.addEventListener("click", () => {
+            window.location.href = "/";
         });
     }
 }

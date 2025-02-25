@@ -23,7 +23,7 @@ router.use(isAuthenticated);
 
 router.get("/", indexPage);
 // router.get("/faq", faqPage);
-// router.get("/map", mapPage);
+router.get("/map", mapPage);
 router.get("/search", searchFunction);
 
 router.get("/register", registerPage);
@@ -32,6 +32,6 @@ router.get("/logout", logoutPage);
 
 // router.get("/registerRein", registerReinPage);
 
-// router.get("/registerFlokk", registerFlokkPage);
+router.get("/registerFlokk", registerFlokkPage);
 
 module.exports = router;

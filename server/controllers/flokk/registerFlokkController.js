@@ -6,7 +6,7 @@ const uuid = require("uuid");
 
 const registerFlokk = async (req, res) => {
     try {
-        const { flokkNavn, merkeNavn, beiteområde, flokkSerienummer, merkeBildelenke } = req.body;
+        let { flokkNavn, merkeNavn, beiteområde, flokkSerienummer, merkeBildelenke } = req.body;
 
         if (!flokkNavn || !merkeNavn) {
             return res.status(400).json({

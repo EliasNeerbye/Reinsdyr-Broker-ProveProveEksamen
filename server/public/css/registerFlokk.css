@@ -1,0 +1,26 @@
+/* This file contains additional styles specific to the register flokk page */
+/* Most styles are inherited from auth.css */
+
+.form-container {
+    max-width: 600px;
+}
+
+input[type="file"] {
+    padding: 0.5rem 0;
+}
+
+/* Preview image (if needed) */
+.image-preview {
+    max-width: 100%;
+    margin-top: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    overflow: hidden;
+    display: none;
+}
+
+.image-preview img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
