@@ -41,7 +41,7 @@ app.use(
             ttl: 1 * 24 * 60 * 60,
         }),
         cookie: {
-            secure: process.env.PROD_TRUE === "true",
+            secure: process.env.PROD_TRUE === "tru e",
             httpOnly: true,
             // sameSite: "lax",
             maxAge: 1 * 24 * 60 * 60 * 1000,
@@ -77,6 +77,12 @@ app.use(helmet({
             fontSrc: ["'self'"],
             connectSrc: ["'self'"]
         }
+    },
+    crossOriginOpenerPolicy: {
+        policy: 'same-origin'
+    },
+    referrerPolicy: {
+        policy: 'strict-origin-when-cross-origin'
     }
 }));
 
