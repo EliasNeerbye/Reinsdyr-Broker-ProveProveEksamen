@@ -22,7 +22,7 @@ const registerFlokkPage = require("../controllers/pages/registerFlokkPage");
 router.use(isAuthenticated);
 
 router.get("/", indexPage);
-// router.get("/faq", faqPage);
+router.get("/faq", faqPage);
 router.get("/map", mapPage);
 router.get("/search", searchFunction);
 
