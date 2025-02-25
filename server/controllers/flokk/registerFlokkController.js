@@ -8,8 +8,6 @@ const registerFlokk = async (req, res) => {
     try {
         let { flokkNavn, merkeNavn, beiteomraade, flokkSerienummer, merkeBildelenke } = req.body;
 
-        console.log(req.body);
-
         if (!flokkNavn || !merkeNavn) {
             return res.status(400).json({
                 message: "Alle obligatoriske felt må fylles ut!",
