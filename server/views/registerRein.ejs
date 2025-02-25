@@ -1,0 +1,36 @@
+<%- include('components/header.ejs') %>
+<body>
+    <%- include('components/nav.ejs') %>
+    <main>
+        <div class="form-container">
+            <h2>Registrer nytt reinsdyr</h2>
+            <form id="registerReinForm">
+                <div class="form-group">
+                    <label for="navn">Reinsdyrnavn</label>
+                    <input type="text" id="navn" name="navn" required />
+                </div>
+                <div class="form-group">
+                    <label for="flokkId">Flokk</label>
+                    <select id="flokkId" name="flokkId" required>
+                        <option value="" disabled selected>Velg flokk</option>
+                        <% flokker.forEach(function(flokk) { %>
+                        <option value="<%= flokk._id %>"><%= flokk.flokkNavn %> (<%= flokk.flokkSerienummer %>)</option>
+                        <% }); %>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="fødselsdato">Fødselsdato</label>
+                    <input type="date" id="fødselsdato" name="fødselsdato" required />
+                </div>
+                <div class="form-group">
+                    <label for="customSerienummer">Serienummer (valgfritt)</label>
+                    <input type="text" id="customSerienummer" name="customSerienummer" />
+                    <small>Et unikt serienummer genereres automatisk hvis du ikke oppgir et</small>
+                </div>
+                <div class="form-message" id="registerReinMessage"></div>
+                <button type="submit" class="submitBtn">Registrer Reinsdyr</button>
+            </form>
+        </div>
+    </main>
+</body>
+<%- include('components/footer.ejs') %>

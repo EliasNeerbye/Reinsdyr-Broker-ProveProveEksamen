@@ -30,7 +30,7 @@ router.get("/register", registerPage);
 router.get("/login", loginPage);
 router.get("/logout", logoutPage);
 
-// router.get("/registerRein", registerReinPage);
+router.get("/registerRein", registerReinPage);
 
 router.get("/registerFlokk", registerFlokkPage);
 
