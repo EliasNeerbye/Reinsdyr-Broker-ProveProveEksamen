@@ -12,14 +12,12 @@ const searchFunction = async (req, res) => {
     try {
         const searchPattern = new RegExp(params, "i");
 
-        // Search for eiere
         const eier = await Eier.find({
             $or: [{ navn: searchPattern }, { epost: searchPattern }, { kontaktspråk: searchPattern }, { telefon: searchPattern }],
         })
             .select("navn epost telefon kontaktspråk flokker")
             .populate("flokker", "flokkNavn");
 
-        // Search for flokker
         const flokk = await Flokk.find({
             $or: [{ flokkNavn: searchPattern }, { flokkSerienummer: searchPattern }, { merkeNavn: searchPattern }],
         })
@@ -27,19 +25,16 @@ const searchFunction = async (req, res) => {
             .populate("eierId", "navn")
             .populate("reinsdyr", "navn serienummer");
 
-        // Search for reinsdyr
         const reinsdyr = await Reinsdyr.find({
             $or: [{ serienummer: searchPattern }, { navn: searchPattern }],
         })
             .select("serienummer navn fødselsdato flokkId")
             .populate("flokkId", "flokkNavn flokkSerienummer");
 
-        // Search for beiteområder
         const beiteområde = await Beiteområde.find({
             $or: [{ primærBeiteområde: searchPattern }, { fylker: searchPattern }],
         }).select("primærBeiteområde fylker");
 
-        // Get flocks in matching beiteområder
         let beiteFlokker = [];
         if (beiteområde.length > 0) {
             const beiteOmrådeIds = beiteområde.map((b) => b._id);
@@ -51,10 +46,8 @@ const searchFunction = async (req, res) => {
                 .populate("reinsdyr", "navn serienummer");
         }
 
-        // Combine direct flokk matches and beiteområde-related flokker
         const allFlokker = [...flokk];
 
-        // Only add beiteFlokker that aren't already in the flokk results
         const existingFlokkIds = new Set(flokk.map((f) => f._id.toString()));
         beiteFlokker.forEach((bf) => {
             if (!existingFlokkIds.has(bf._id.toString())) {

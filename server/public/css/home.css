@@ -1,0 +1,169 @@
+/* General styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background-color: #f5f5f5;
+    color: #333;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Navigation */
+nav {
+    background-color: #2c3e50;
+    color: white;
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+nav h1 {
+    font-size: 1.8rem;
+    font-weight: bold;
+}
+
+/* Buttons */
+button {
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.registerButtons {
+    background-color: #27ae60;
+    color: white;
+    margin-left: 0.5rem;
+}
+
+.registerButtons:hover {
+    background-color: #219653;
+}
+
+.profileButton {
+    background-color: #3498db;
+    color: white;
+}
+
+.profileButton:hover {
+    background-color: #2980b9;
+}
+
+/* Main content */
+main {
+    flex: 1;
+    padding: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+/* Search bar */
+search {
+    display: block;
+    margin-bottom: 2rem;
+}
+
+.searchBar {
+    width: 100%;
+    padding: 0.8rem 1rem;
+    border: 2px solid #ddd;
+    border-radius: 4px;
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+}
+
+.searchBar:focus {
+    outline: none;
+    border-color: #3498db;
+    box-shadow: 0 0 5px rgba(52, 152, 219, 0.5);
+}
+
+/* Results section */
+.results {
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    padding: 1.5rem;
+    min-height: 300px;
+}
+
+/* Tables for search results */
+.results-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 1.5rem;
+}
+
+.results-table th {
+    background-color: #f2f2f2;
+    padding: 0.75rem;
+    text-align: left;
+    font-weight: bold;
+    border-bottom: 2px solid #ddd;
+}
+
+.results-table td {
+    padding: 0.75rem;
+    border-bottom: 1px solid #ddd;
+}
+
+.results-table tr:hover {
+    background-color: #f9f9f9;
+}
+
+/* Specific styling for each table type */
+.eier-table th {
+    border-top: 3px solid #3498db;
+}
+
+.flokk-table th {
+    border-top: 3px solid #27ae60;
+}
+
+.reinsdyr-table th {
+    border-top: 3px solid #e74c3c;
+}
+
+/* Section headers in results */
+.results h3 {
+    margin: 1.5rem 0 0.5rem 0;
+    color: #2c3e50;
+    font-size: 1.3rem;
+}
+
+.results h3:first-child {
+    margin-top: 0;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    nav {
+        padding: 1rem;
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    main {
+        padding: 1rem;
+    }
+
+    .results {
+        padding: 1rem;
+        overflow-x: auto;
+    }
+
+    .results-table {
+        min-width: 600px;
+    }
+}

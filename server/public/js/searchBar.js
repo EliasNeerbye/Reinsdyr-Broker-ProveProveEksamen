@@ -6,16 +6,13 @@ async function search() {
             const result = await response.json();
             const div = document.getElementById("resultDiv");
 
-            // Clear previous results
             div.innerHTML = "";
 
             if (result && result.success && result.totalCount > 0) {
-                // Add result count
                 const resultCount = document.createElement("p");
                 resultCount.textContent = `Fant ${result.totalCount} resultater`;
                 div.appendChild(resultCount);
 
-                // 1. Eier Table
                 if (result.results.eierResults && result.results.eierResults.length > 0) {
                     const eierHeader = document.createElement("h3");
                     eierHeader.textContent = "Eiere";
@@ -62,7 +59,6 @@ async function search() {
                     div.appendChild(eierTable);
                 }
 
-                // 2. Flokk Table
                 if (result.results.flokkResults && result.results.flokkResults.length > 0) {
                     const flokkHeader = document.createElement("h3");
                     flokkHeader.textContent = "Flokker";
@@ -104,7 +100,6 @@ async function search() {
                     div.appendChild(flokkTable);
                 }
 
-                // 3. Reinsdyr Table
                 if (result.results.reinsdyrResults && result.results.reinsdyrResults.length > 0) {
                     const reinsdyrHeader = document.createElement("h3");
                     reinsdyrHeader.textContent = "Reinsdyr";
