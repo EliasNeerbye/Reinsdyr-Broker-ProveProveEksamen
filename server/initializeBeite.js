@@ -2,13 +2,16 @@
  * Script to initialize and create all Beiteområde documents
  * based on the defined BEITEOMRÅDE_FYLKER_MAPPING
  */
+require("dotenv").config()
 
 const mongoose = require("mongoose");
 const Beiteområde = require("./models/Beiteområde.js");
 
 // Database connection parameters
-const DB_URI = "mongodb://localhost:27017/reindeerBroker";
-
+const DB_URI =
+    process.env.PROD_TRUE === "true"
+        ? `mongodb://${process.env.MONGO_USER}:${process.env.MONGO_PWD}@${process.env.MONGO_IP}/reindeerBroker`
+        : `mongodb://${process.env.MONGO_IP}/reindeerBroker`;
 /**
  * Create all Beiteområde documents based on BEITEOMRÅDE_FYLKER_MAPPING
  */
