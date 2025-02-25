@@ -30,53 +30,99 @@
     text-align: center;
 }
 
-.faq-container h3 {
-    color: var(--accent-dark);
-    margin-top: 1.5rem;
+/* Accordion Styles */
+details {
+    background-color: var(--background);
+    border: 1px solid var(--border);
+    border-radius: 10px;
     margin-bottom: 1rem;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+details[open] {
+    background-color: var(--accent-light);
+    box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+}
+
+details summary {
+    cursor: pointer;
+    padding: 1rem;
     display: flex;
     align-items: center;
     gap: 0.7rem;
-    transition: transform 0.3s ease;
+    font-weight: 600;
+    color: var(--accent-dark);
+    transition: background-color 0.3s ease;
+    list-style: none;
+    outline: none;
 }
 
-.faq-container h3:hover {
-    transform: translateX(5px);
+details summary:hover {
+    background-color: rgba(129, 183, 217, 0.1);
 }
 
-.faq-container h3 span {
+details summary:focus {
+    outline: 2px solid var(--primary);
+}
+
+details summary span {
     font-size: 1.5rem;
 }
 
-.faq-container p,
-.faq-container ul,
-.faq-container ol {
-    color: var(--text-dark);
-    line-height: 1.6;
-    margin-bottom: 1rem;
+details summary::marker,
+details summary::-webkit-details-marker {
+    display: none;
+    content: "";
 }
 
-.faq-container ul,
-.faq-container ol {
+details summary::before {
+    content: '▶';
+    display: inline-block;
+    margin-right: 0.5rem;
+    transform: rotate(0deg);
+    transition: transform 0.3s ease;
+}
+
+details[open] summary::before {
+    transform: rotate(90deg);
+}
+
+details > p,
+details > ul,
+details > ol {
+    padding: 0 1rem 1rem;
+    color: var(--text-dark);
+    line-height: 1.6;
+}
+
+details > ul,
+details > ol {
     padding-left: 2rem;
 }
 
-.faq-container ul {
+details > ul {
     list-style-type: disc;
 }
 
-.faq-container ol {
+details > ol {
     list-style-type: decimal;
 }
 
-.faq-container li {
-    margin-bottom: 0.5rem;
+details > p:last-child,
+details > ul:last-child,
+details > ol:last-child {
+    margin-bottom: 0;
 }
 
 @media (max-width: 768px) {
     .faq-container {
         padding: 1.5rem 0.8rem;
         margin: 0 0.5rem;
+    }
+
+    details summary {
+        padding: 0.8rem;
     }
 }
 
@@ -85,11 +131,11 @@
         font-size: 1.4rem;
     }
 
-    .faq-container h3 {
-        font-size: 1.1rem;
+    details summary {
+        font-size: 0.9rem;
     }
 
-    .faq-container h3 span {
+    details summary span {
         font-size: 1.2rem;
     }
 }
