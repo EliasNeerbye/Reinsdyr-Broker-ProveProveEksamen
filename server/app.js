@@ -41,7 +41,7 @@ app.use(
             ttl: 1 * 24 * 60 * 60,
         }),
         cookie: {
-            secure: process.env.PROD_TRUE === "tru e",
+            secure: false,
             httpOnly: true,
             // sameSite: "lax",
             maxAge: 1 * 24 * 60 * 60 * 1000,
@@ -50,9 +50,9 @@ app.use(
 );
 
 const origin = process.env.PROD_TRUE === "true"
-    ? `${process.env.SSL_STATE}://${process.env.APP_IP}`
-    : `${process.env.SSL_STATE}://${process.env.APP_IP}:${process.env.PORT}`;
-const methods = ["GET", "POST", "PUT", "DELETE"];
+    ? `http://${process.env.APP_IP}`
+    : `http://${process.env.APP_IP}:${process.env.PORT}`;
+const methods = ["*"];
 const allowedHeaders = ["*"];
 const maxAge = 1000 * 60 * 60 * 24 * 1;
 const credentials = true;
