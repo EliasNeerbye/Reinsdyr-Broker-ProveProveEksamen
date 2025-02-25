@@ -20,6 +20,15 @@ app.use(fileupload({ limits: { fileSize: 50 * 1024 * 1024 }, createParentPath: t
 app.use((req, res, next) => {
     res.removeHeader('Strict-Transport-Security');
     res.setHeader('Origin-Agent-Cluster', '?1');
+    
+    // Explicitly remove HSTS header
+    res.removeHeader('Strict-Transport-Security');
+    
+    // Prevent automatic HTTPS redirection
+    if (req.headers['x-forwarded-proto'] === 'https') {
+        return res.redirect(`http://${req.headers.host}${req.url}`);
+    }
+    
     next();
 });
 
