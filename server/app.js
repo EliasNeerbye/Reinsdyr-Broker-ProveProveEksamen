@@ -58,4 +58,4 @@ app.use("/flokk", flokkRoutes);
 app.use("/", getRoutes);
 
 app.listen(process.env.PORT);
-console.warn(`Server is listening on: ${origin}`);
+console.warn(`Server is listening on port 3000`);
