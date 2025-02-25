@@ -17,6 +17,7 @@ const registerFlokkPage = async (req, res) => {
         });
 
         pageData.beiteOptions = beiteOptions;
+        pageData.kontaktspråk = req.session.kontaktspråk;
 
         res.render("registerFlokk", pageData);
     } catch (error) {

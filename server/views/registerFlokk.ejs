@@ -20,12 +20,13 @@
                 </div>
                 <div class="form-group">
                     <label for="beiteområde">Beiteområde</label>
-                    <select id="beiteområde" name="beiteområde">
+                    <select id="beiteområde" name="beiteomraade">
                         <option value="" disabled selected>Velg beiteområde</option>
                         <% beiteOptions.forEach(function(option) { %>
                         <option value="<%= option %>"><%= option %></option>
                         <% }); %>
                     </select>
+                    <small>Om ikke valgt, brukes ditt kontaktspråk (<%= kontaktspråk %>)</small>
                 </div>
                 <div class="form-group">
                     <label for="merkeBildelenke">Bumerke Bildelenke (valgfritt)</label>

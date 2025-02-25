@@ -6,7 +6,9 @@ const uuid = require("uuid");
 
 const registerFlokk = async (req, res) => {
     try {
-        let { flokkNavn, merkeNavn, beiteområde, flokkSerienummer, merkeBildelenke } = req.body;
+        let { flokkNavn, merkeNavn, beiteomraade, flokkSerienummer, merkeBildelenke } = req.body;
+
+        console.log(req.body);
 
         if (!flokkNavn || !merkeNavn) {
             return res.status(400).json({
@@ -61,12 +63,12 @@ const registerFlokk = async (req, res) => {
             });
         }
 
-        if (!beiteområde) {
-            beiteområde = eier.kontaktspråk;
+        if (!beiteomraade || beiteomraade === "") {
+            beiteomraade = eier.kontaktspråk;
         }
 
         const beiteområdeObj = await Beiteområde.findOne({
-            primærBeiteområde: beiteområde,
+            primærBeiteområde: beiteomraade,
         });
 
         if (!beiteområdeObj) {
