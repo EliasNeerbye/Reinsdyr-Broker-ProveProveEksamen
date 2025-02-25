@@ -48,7 +48,7 @@ const indexPage = async (req, res) => {
         const pageData = createPageData(req, {
             title: "Home",
             cssLinks: ["/css/home.css"],
-            scriptLinks: ["/js/searchBar.js", "/js/navFunctionality.js"],
+            scriptLinks: ["/js/searchBar.js", "/js/navFunctionality.js", "/js/index.js"],
         });
 
         pageData.searchOptions = Array.from(searchOptions);
