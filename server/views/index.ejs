@@ -35,7 +35,7 @@
                                     <td>
                                         <%= flokk.merkeNavn %>
                                         <% if (flokk.merkeBildelenke) { %>
-                                            <span class="merke-preview" data-src="<%= flokk.merkeBildelenke %>" title="Trykk for å se merkebilde">👁️</span>
+                                            <button class="merke-preview-btn" data-src="<%= flokk.merkeBildelenke %>" title="Trykk for å se merkebilde">Vis merke</button>
                                         <% } %>
                                     </td>
                                     <td><%= flokk.reinsdyrCount %></td>
@@ -108,11 +108,13 @@
     </main>
     
     <!-- Modal for displaying merke images -->
+    <% if (userData) { %>
     <div id="merkeModal" class="modal">
         <div class="modal-content">
             <span class="close">&times;</span>
             <img id="merkeImage" src="" alt="Merkebilde">
         </div>
     </div>
+    <% } %>
 </body>
 <%- include('components/footer.ejs') %>
