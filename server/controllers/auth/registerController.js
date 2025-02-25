@@ -105,7 +105,6 @@ const register = async (req, res) => {
         req.session.kontaktspråk = nyEier.kontaktspråk;
         req.session.isLoggedIn = true;
 
-        console.log(req.session);
 
         await new Promise((resolve, reject) => {
             req.session.save((err) => {

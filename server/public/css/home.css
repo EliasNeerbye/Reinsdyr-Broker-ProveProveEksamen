@@ -1,75 +1,4 @@
-/* General styles */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: Arial, sans-serif;
-}
-
-body {
-    background-color: #f5f5f5;
-    color: #333;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-}
-
-/* Navigation */
-nav {
-    background-color: #2c3e50;
-    color: white;
-    padding: 1rem 2rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-}
-
-nav h1 {
-    font-size: 1.8rem;
-    font-weight: bold;
-    cursor: pointer;
-}
-
-/* Buttons */
-button {
-    padding: 0.5rem 1rem;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    font-weight: bold;
-    transition: background-color 0.3s ease;
-}
-
-.registerButtons {
-    background-color: #27ae60;
-    color: white;
-    margin-left: 0.5rem;
-}
-
-.registerButtons:hover {
-    background-color: #219653;
-}
-
-.profileButton {
-    background-color: #3498db;
-    color: white;
-}
-
-.profileButton:hover {
-    background-color: #2980b9;
-}
-
-/* Main content */
-main {
-    flex: 1;
-    padding: 2rem;
-    max-width: 1200px;
-    margin: 0 auto;
-    width: 100%;
-}
-
-/* Search bar */
+/* ====== SEARCH STYLES ====== */
 search {
     display: block;
     margin-bottom: 2rem;
@@ -77,90 +6,100 @@ search {
 
 .searchBar {
     width: 100%;
-    padding: 0.8rem 1rem;
-    border: 2px solid #ddd;
-    border-radius: 4px;
-    font-size: 1rem;
-    transition: border-color 0.3s ease;
+    padding: 1rem 1.2rem;
+    border: 2px solid var(--border);
+    border-radius: 8px;
+    font-size: 1.05rem;
+    transition: all 0.3s ease;
+    background-color: var(--card-background);
 }
 
 .searchBar:focus {
     outline: none;
-    border-color: #3498db;
-    box-shadow: 0 0 5px rgba(52, 152, 219, 0.5);
+    border-color: var(--primary);
+    box-shadow: 0 0 0 4px rgba(92, 141, 137, 0.15);
 }
 
-/* Results section */
+/* ====== SEARCH RESULTS SECTION ====== */
 .results {
-    background-color: white;
+    background-color: var(--card-background);
     border-radius: 8px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    padding: 1.5rem;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    padding: 1.8rem;
     min-height: 300px;
 }
 
-/* Tables for search results */
-.results-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-bottom: 1.5rem;
+.results h2 {
+    color: var(--primary-dark);
+    margin-bottom: 1.2rem;
+    font-size: 1.5rem;
 }
 
-.results-table th {
-    background-color: #f2f2f2;
-    padding: 0.75rem;
-    text-align: left;
-    font-weight: bold;
-    border-bottom: 2px solid #ddd;
-}
-
-.results-table td {
-    padding: 0.75rem;
-    border-bottom: 1px solid #ddd;
-}
-
-.results-table tr:hover {
-    background-color: #f9f9f9;
-}
-
-/* Specific styling for each table type */
-.eier-table th {
-    border-top: 3px solid #3498db;
-}
-
-.flokk-table th {
-    border-top: 3px solid #27ae60;
-}
-
-.reinsdyr-table th {
-    border-top: 3px solid #e74c3c;
-}
-
-/* Section headers in results */
 .results h3 {
-    margin: 1.5rem 0 0.5rem 0;
-    color: #2c3e50;
+    margin: 1.8rem 0 0.8rem 0;
+    color: var(--primary-dark);
     font-size: 1.3rem;
+    border-bottom: 2px solid var(--primary-light);
+    padding-bottom: 0.5rem;
 }
 
 .results h3:first-child {
     margin-top: 0;
 }
 
-/* Responsive design */
+.results ul {
+    list-style-position: inside;
+    margin-left: 1rem;
+    color: var(--text-dark);
+}
+
+.results ul li {
+    margin-bottom: 0.5rem;
+}
+
+/* ====== RESULTS TABLES ====== */
+.results-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 1.8rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.results-table th {
+    background-color: var(--primary-light);
+    color: var(--primary-dark);
+    padding: 0.8rem;
+    text-align: left;
+    font-weight: 600;
+    border-bottom: 2px solid var(--primary);
+}
+
+.results-table td {
+    padding: 0.8rem;
+    border-bottom: 1px solid var(--border);
+}
+
+.results-table tr:hover {
+    background-color: rgba(167, 190, 174, 0.1);
+}
+
+/* ====== TABLE TYPE STYLING ====== */
+.eier-table th {
+    border-top: 3px solid var(--primary);
+}
+
+.flokk-table th {
+    border-top: 3px solid var(--accent);
+}
+
+.reinsdyr-table th {
+    border-top: 3px solid var(--error);
+}
+
+/* ====== RESPONSIVE DESIGN FOR RESULTS ====== */
 @media (max-width: 768px) {
-    nav {
-        padding: 1rem;
-        flex-direction: column;
-        gap: 1rem;
-    }
-
-    main {
-        padding: 1rem;
-    }
-
     .results {
-        padding: 1rem;
+        padding: 1.2rem;
         overflow-x: auto;
     }
 

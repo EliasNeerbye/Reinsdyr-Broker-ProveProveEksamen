@@ -1,0 +1,20 @@
+main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+}
+
+main img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    border: 5px solid var(--card-background);
+}
+
+@media (max-width: 768px) {
+    main {
+        padding: 1rem;
+    }
+}
