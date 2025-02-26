@@ -14,7 +14,7 @@
                     <select id="flokkId" name="flokkId" required>
                         <option value="" disabled selected>Velg flokk</option>
                         <% flokker.forEach(function(flokk) { %>
-                        <option value="<%= flokk._id %>"><%= flokk.flokkNavn %> (<%= flokk.flokkSerienummer %>)</option>
+                        <option value="<%= flokk._id %>"<% if (flokkId && flokkId.toString() === flokk._id.toString()){ %>selected<% } %>><%= flokk.flokkNavn %> (<%= flokk.flokkSerienummer %>)</option>
                         <% }); %>
                     </select>
                 </div>

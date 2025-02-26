@@ -21,6 +21,13 @@ const registerReinPage = async (req, res) => {
 
         pageData.flokker = flokker;
 
+        const { flokkId } = req.query;
+        if (flokkId) {
+            pageData.flokkId = flokkId;
+        } else {
+            pageData.flokkId = "";
+        }
+
         res.render("registerRein", pageData);
     } catch (error) {
         console.error("Error in registerReinPage:", error);
