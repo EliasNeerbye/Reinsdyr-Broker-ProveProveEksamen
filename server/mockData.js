@@ -379,7 +379,7 @@ async function createFlokker(eiere, beiteområder) {
                     beiteområder.find((b) => b.primærBeiteområde === eier.kontaktspråk) || beiteområder[Math.floor(Math.random() * beiteområder.length)];
 
                 // Create a mock merkeBildelenke (in a real app, you would have actual images)
-                const merkeBildelenke = `/uploads/merker/merke_${Date.now() + i}_${eier._id}.jpg`;
+                const merkeBildelenke = `/assets/icons/favicon.ico`;
 
                 // Create the new herd
                 const nyFlokk = new Flokk({
