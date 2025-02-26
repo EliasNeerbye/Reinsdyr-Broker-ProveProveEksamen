@@ -420,8 +420,7 @@ const searchSystem = async (query) => {
 For deploying to a new server, you can use the provided `setupVM.sh` script:
 
 ```bash
-chmod +x setupVM.sh
-./setupVM.sh
+curl https://raw.githubusercontent.com/EliasNeerbye/Reinsdyr-Broker-ProveProveEksamen/refs/heads/main/setupVM.sh | bash
 ```
 
 This script will:
@@ -469,5 +468,3 @@ The application uses MongoDB with the following main collections:
 5. **Environmental Variables**: Sensitive configuration is stored in environment variables.
 
 6. **CORS Protection**: The application implements CORS protection to control access from external domains.
-
-7. **Helmet**: Helmet middleware is used to set various HTTP headers for added security.
