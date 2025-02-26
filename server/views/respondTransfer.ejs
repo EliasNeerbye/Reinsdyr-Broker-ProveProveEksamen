@@ -1,0 +1,87 @@
+<%- include('components/header.ejs') %>
+<body>
+    <%- include('components/nav.ejs') %>
+    <main>
+        <div class="form-container">
+            <h2>Svar på Overføringsforespørsel</h2>
+            <div class="transfer-details">
+                <div class="transfer-header">
+                    <div class="sender-info">
+                        <h3>Forespørsel fra</h3>
+                        <div class="detail-item">
+                            <span class="label">Navn:</span>
+                            <span class="value"><%= transaksjon.fraEier.navn %></span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="label">E-post:</span>
+                            <span class="value"><%= transaksjon.fraEier.epost %></span>
+                        </div>
+                    </div>
+                    <div class="date-info">
+                        <span class="label">Dato:</span>
+                        <span class="value"><%= transaksjon.opprettetDato %></span>
+                    </div>
+                </div>
+
+                <div class="reinsdyr-section">
+                    <h3>Reinsdyr detaljer</h3>
+                    <div class="detail-item">
+                        <span class="label">Navn:</span>
+                        <span class="value"><%= transaksjon.reinsdyr.navn %></span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="label">Serienummer:</span>
+                        <span class="value"><%= transaksjon.reinsdyr.serienummer %></span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="label">Fødselsdato:</span>
+                        <span class="value"><%= transaksjon.reinsdyr.fødselsdato %></span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="label">Nåværende flokk:</span>
+                        <span class="value"><%= transaksjon.fraFlokk.navn %> (<%= transaksjon.fraFlokk.serienummer %>)</span>
+                    </div>
+                </div>
+
+                <% if (transaksjon.melding) { %>
+                <div class="message-section">
+                    <h3>Melding fra avsender</h3>
+                    <p class="message"><%= transaksjon.melding %></p>
+                </div>
+                <% } %>
+            </div>
+
+            <form id="respondTransferForm">
+                <input type="hidden" id="transaksjonId" name="transaksjonId" value="<%= transaksjon.id %>" />
+                <input type="hidden" id="godkjent" name="godkjent" value="" />
+
+                <div class="transfer-buttons">
+                    <button type="button" id="acceptBtn" class="transfer-btn accept">Godta overføring</button>
+                    <button type="button" id="declineBtn" class="transfer-btn decline">Avslå overføring</button>
+                </div>
+
+                <div id="flokkSelector" class="form-group" style="display: none">
+                    <label for="tilFlokkId">Velg flokk å overføre til:</label>
+                    <select id="tilFlokkId" name="tilFlokkId">
+                        <option value="" disabled selected>Velg flokk</option>
+                        <% flokker.forEach(function(flokk) { %>
+                        <option value="<%= flokk.id %>"><%= flokk.navn %> (<%= flokk.serienummer %>)</option>
+                        <% }); %>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="melding">Valgfri melding til avsender:</label>
+                    <textarea id="melding" name="melding" rows="4" placeholder="Skriv en beskjed (valgfritt)"></textarea>
+                </div>
+
+                <div class="form-message" id="responseMessage"></div>
+                <button type="submit" class="submitBtn">Send svar</button>
+            </form>
+            <p class="form-footer">
+                <a href="/transaksjoner" class="back-link">&larr; Tilbake til transaksjoner</a>
+            </p>
+        </div>
+    </main>
+</body>
+<%- include('components/footer.ejs') %>

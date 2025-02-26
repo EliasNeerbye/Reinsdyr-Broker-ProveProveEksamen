@@ -1,0 +1,18 @@
+<%- include('components/header.ejs') %>
+<body>
+    <%- include('components/nav.ejs') %>
+    <main>
+        <div class="error-container">
+            <div class="error-icon">
+                <span>⚠️</span>
+            </div>
+            <h1>Beklager, noe gikk galt</h1>
+            <p class="error-message">En ukjent feil oppstod</p>
+            <div class="error-actions">
+                <a href="/" class="back-home-btn">Tilbake til forsiden</a>
+                <a href="javascript:history.back()" class="go-back-btn">Gå tilbake</a>
+            </div>
+        </div>
+    </main>
+</body>
+<%- include('components/footer.ejs') %>

@@ -116,6 +116,7 @@ document.addEventListener("DOMContentLoaded", function () {
                             <td>${reinsdyr.fødselsdato}</td>
                             <td>
                                 <button class="action-btn transfer-btn" data-id="${reinsdyr.id}" data-type="reinsdyr">Overfør</button>
+                                <button class="action-btn transaction-btn" data-id="${reinsdyr.id}" data-type="reinsdyr">Gi bort</button>
                             </td>
                         `;
                         reinsdyrTbody.appendChild(row);
@@ -143,6 +144,15 @@ document.addEventListener("DOMContentLoaded", function () {
                 const type = this.getAttribute("data-type");
                 if (type === "reinsdyr") {
                     window.location.href = `/transferRein?id=${id}`;
+                }
+            });
+        });
+        document.querySelectorAll(".transaction-btn").forEach((btn) => {
+            btn.addEventListener("click", function () {
+                const id = this.getAttribute("data-id");
+                const type = this.getAttribute("data-type");
+                if (type === "reinsdyr") {
+                    window.location.href = `/initiateTransfer?id=${id}`;
                 }
             });
         });

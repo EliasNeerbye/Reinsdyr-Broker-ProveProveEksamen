@@ -1,0 +1,49 @@
+<%- include('components/header.ejs') %>
+<body>
+    <%- include('components/nav.ejs') %>
+    <main>
+        <div class="form-container">
+            <h2>Overfør Reinsdyr til Annen Eier</h2>
+            <div class="reinsdyr-info">
+                <h3>Reinsdyr detaljer:</h3>
+                <div class="detail-item">
+                    <span class="label">Navn:</span>
+                    <span class="value"><%= reinsdyr.navn %></span>
+                </div>
+                <div class="detail-item">
+                    <span class="label">Serienummer:</span>
+                    <span class="value"><%= reinsdyr.serienummer %></span>
+                </div>
+                <div class="detail-item">
+                    <span class="label">Fødselsdato:</span>
+                    <span class="value"><%= reinsdyr.fødselsdato %></span>
+                </div>
+                <div class="detail-item">
+                    <span class="label">Nåværende flokk:</span>
+                    <span class="value"><%= reinsdyr.flokkNavn %> (<%= reinsdyr.flokkSerienummer %>)</span>
+                </div>
+            </div>
+
+            <form id="initiateTransferForm">
+                <input type="hidden" id="reinsdyrId" name="reinsdyrId" value="<%= reinsdyr.id %>" />
+
+                <div class="form-group">
+                    <label for="tilEierEpost">E-post til ny eier:</label>
+                    <input type="email" id="tilEierEpost" name="tilEierEpost" required placeholder="Skriv inn e-posten til den nye eieren" />
+                </div>
+
+                <div class="form-group">
+                    <label for="melding">Valgfri melding til mottaker:</label>
+                    <textarea id="melding" name="melding" rows="4" placeholder="Skriv en beskjed til den nye eieren (valgfritt)"></textarea>
+                </div>
+
+                <div class="form-message" id="transferMessage"></div>
+                <button type="submit" class="submitBtn">Send Overføringsforespørsel</button>
+            </form>
+            <p class="form-footer">
+                <a href="/profile" class="back-link">&larr; Tilbake til profil</a>
+            </p>
+        </div>
+    </main>
+</body>
+<%- include('components/footer.ejs') %>

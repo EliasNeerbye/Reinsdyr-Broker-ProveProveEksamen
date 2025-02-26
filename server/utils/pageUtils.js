@@ -6,6 +6,8 @@ const createPageData = (req, options = {}) => {
         scriptLinks: ["/js/navFunctionality.js"].concat(options.scriptLinks || []),
     };
 
+    if (pageData.title === "Error") pageData.cssLinks = ["/css/global.css", "/css/error.css"];
+
     return pageData;
 };
 

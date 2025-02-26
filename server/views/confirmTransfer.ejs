@@ -1,0 +1,117 @@
+<%- include('components/header.ejs') %>
+<body>
+    <%- include('components/nav.ejs') %>
+    <main>
+        <div class="form-container">
+            <h2>Bekreft Endelig Overføring</h2>
+            <div class="transfer-details">
+                <div class="transfer-header">
+                    <div class="transfer-parties">
+                        <div class="sender-info">
+                            <h3>Fra</h3>
+                            <div class="detail-item">
+                                <span class="label">Navn:</span>
+                                <span class="value"><%= transaksjon.fraEier.navn %></span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="label">E-post:</span>
+                                <span class="value"><%= transaksjon.fraEier.epost %></span>
+                            </div>
+                        </div>
+                        <div class="receiver-info">
+                            <h3>Til</h3>
+                            <div class="detail-item">
+                                <span class="label">Navn:</span>
+                                <span class="value"><%= transaksjon.tilEier.navn %></span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="label">E-post:</span>
+                                <span class="value"><%= transaksjon.tilEier.epost %></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="date-info">
+                        <div class="detail-item">
+                            <span class="label">Opprettet:</span>
+                            <span class="value"><%= transaksjon.opprettetDato %></span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="label">Sist oppdatert:</span>
+                            <span class="value"><%= transaksjon.oppdatertDato %></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="reinsdyr-section">
+                    <h3>Reinsdyr detaljer</h3>
+                    <div class="detail-item">
+                        <span class="label">Navn:</span>
+                        <span class="value"><%= transaksjon.reinsdyr.navn %></span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="label">Serienummer:</span>
+                        <span class="value"><%= transaksjon.reinsdyr.serienummer %></span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="label">Fødselsdato:</span>
+                        <span class="value"><%= transaksjon.reinsdyr.fødselsdato %></span>
+                    </div>
+                </div>
+
+                <div class="flokk-section">
+                    <div class="fra-flokk">
+                        <h3>Fra Flokk</h3>
+                        <div class="detail-item">
+                            <span class="label">Navn:</span>
+                            <span class="value"><%= transaksjon.fraFlokk.navn %></span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="label">Serienummer:</span>
+                            <span class="value"><%= transaksjon.fraFlokk.serienummer %></span>
+                        </div>
+                    </div>
+                    <div class="til-flokk">
+                        <h3>Til Flokk</h3>
+                        <div class="detail-item">
+                            <span class="label">Navn:</span>
+                            <span class="value"><%= transaksjon.tilFlokk.navn %></span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="label">Serienummer:</span>
+                            <span class="value"><%= transaksjon.tilFlokk.serienummer %></span>
+                        </div>
+                    </div>
+                </div>
+
+                <% if (transaksjon.meldingFraAvsender) { %>
+                <div class="message-section avsender-message">
+                    <h3>Melding fra avsender</h3>
+                    <p class="message"><%= transaksjon.meldingFraAvsender %></p>
+                </div>
+                <% } %> <% if (transaksjon.meldingFraMottaker) { %>
+                <div class="message-section mottaker-message">
+                    <h3>Melding fra mottaker</h3>
+                    <p class="message"><%= transaksjon.meldingFraMottaker %></p>
+                </div>
+                <% } %>
+            </div>
+
+            <form id="confirmTransferForm">
+                <input type="hidden" id="transaksjonId" name="transaksjonId" value="<%= transaksjon.id %>" />
+                <input type="hidden" id="godkjent" name="godkjent" value="" />
+
+                <div class="transfer-buttons confirm-buttons">
+                    <button type="button" id="confirmBtn" class="confirm-btn confirm">Bekreft overføring</button>
+                    <button type="button" id="declineBtn" class="confirm-btn decline">Avvis overføring</button>
+                </div>
+
+                <div class="form-message" id="confirmMessage"></div>
+                <button type="submit" class="submitBtn">Send endelig svar</button>
+            </form>
+            <p class="form-footer">
+                <a href="/transaksjoner" class="back-link">&larr; Tilbake til transaksjoner</a>
+            </p>
+        </div>
+    </main>
+</body>
+<%- include('components/footer.ejs') %>
