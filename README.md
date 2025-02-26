@@ -13,7 +13,6 @@
 | Bcrypt | Sikkerhet | Passordkrypteringsbibliotek for sikker brukerautentisering |
 | EJS | Frontend | Template-engine for serverside-rendering |
 | Dotenv | Verktøy | Håndtering av miljøvariabler |
-| Helmet | Sikkerhet | Samling av sikkerhetsmiddleware for Express-applikasjoner |
 | CORS | Sikkerhet | Cross-Origin Sikkerhetsmiddleware |
 | PM2 | DevOps | Process-handler for Node.js-applikasjoner i produksjon |
 | Nginx | DevOps | Webserver og omvendt proxy |
@@ -36,44 +35,63 @@
 
 erDiagram
     Eier {
-        ObjectId _id
+        ObjectId _id PK
         String navn
-        String epost "unique"
+        String epost UK
         String passord
-        String telefon "unique"
-        String kontaktspraak "Soer|Ume|Pite|Lule|Nord|Enare|Skolt|Akkala|Kildin|Ter"
-        ObjectId[] flokker "Ref: Flokk"
+        String telefon UK
+        String kontaktspråk "Soor|Ume|Pite|Lule|Nord|Enare|Skolt|Akkala|Kildin|Ter"
+        String rolle "Admin|User"
+        ObjectId[] flokker FK "Ref: Flokk"
     }
     
     Flokk {
-        ObjectId _id
-        ObjectId eierId "Ref: Eier, unique"
+        ObjectId _id PK
+        ObjectId eierId FK "Ref: Eier"
         String flokkNavn
-        String flokkSerienummer "unique"
-        String merkeNavn "unique"
-        String merkeBildelenke "unique"
-        ObjectId[] reinsdyr "Ref: Reinsdyr"
-        ObjectId beiteomraade "Ref: Beiteomraade"
+        String flokkSerienummer UK
+        String merkeNavn UK
+        String merkeBildelenke UK
+        ObjectId[] reinsdyr FK "Ref: Reinsdyr"
+        ObjectId beiteområde FK "Ref: Beiteområde"
     }
     
     Reinsdyr {
-        ObjectId _id
-        String serienummer "unique"
+        ObjectId _id PK
+        String serienummer UK
         String navn
-        ObjectId flokkId "Ref: Flokk"
-        Date foedselsdato
+        ObjectId flokkId FK "Ref: Flokk"
+        Date foodselsdato
     }
 
-    Beiteomraade {
-        ObjectId _id
-        String primaerBeiteomraade "Soer|Ume|Pite|Lule|Nord|Enare|Skolt|Akkala|Kildin|Ter"
-        String[] fylker "Nordland|Troms|Finnmark|Troendelag|Norrbotten|Vaesterbotten|Jaemtland|Vaesternorrland|Lappi|Murmansk oblast|Republikken Karelen"
-        ObjectId[] flokker "Ref: Flokk"
+    Beiteområde {
+        ObjectId _id PK
+        String primærBeiteområde UK "Soor|Ume|Pite|Lule|Nord|Enare|Skolt|Akkala|Kildin|Ter"
+        String[] fylker "Nordland|Troms|Finnmark|Troondelag|Norrbotten|Vaasterbotten|Jaamtland|Vaasternorrland|Lappi|Murmansk oblast|Republikken Karelen"
+        ObjectId[] flokker FK "Ref: Flokk"
+    }
+    
+    Transaksjon {
+        ObjectId _id PK
+        ObjectId reinsdyrId FK "Ref: Reinsdyr"
+        ObjectId fraEierId FK "Ref: Eier"
+        ObjectId fraFlokkId FK "Ref: Flokk"
+        ObjectId tilEierId FK "Ref: Eier"
+        ObjectId tilFlokkId FK "Ref: Flokk"
+        String status "Venter|GodkjentAvMottaker|AvslaattAvMottaker|GodkjentAvAvsender|AvslaattAvAvsender|Fullfoort|Avbrutt"
+        String meldingFraAvsender
+        String meldingFraMottaker
+        Date opprettetDato
+        Date oppdatertDato
     }
 
-    Eier ||--o{ Flokk : "har"
+    Eier ||--o{ Flokk : "eier"
+    Eier ||--o{ Transaksjon : "sender/mottar"
     Flokk ||--o{ Reinsdyr : "inneholder"
-    Flokk }o--|| Beiteomraade : "beiter i"
+    Flokk }o--|| Beiteområde : "beiter_i"
+    Beiteområde ||--o{ Flokk : "omfatter"
+    Reinsdyr ||--o{ Transaksjon : "er_del_av"
+    Flokk ||--o{ Transaksjon : "involveres_i"
 ```
 
 ## Nettverkskart
