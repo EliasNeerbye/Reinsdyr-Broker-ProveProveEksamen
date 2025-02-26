@@ -45,10 +45,14 @@
                             <span class="flokk-serienummer"><%= flokk.serienummer %></span>
                         </div>
                         <div class="flokk-details">
-                            <div class="detail-item">
-                                <span class="label">Merkenavn:</span>
-                                <span class="value"><%= flokk.merkeNavn %></span>
-                                <button class="merke-preview-btn" data-src="<%= flokk.merkeBilde %>">Vis</button>
+                            <div class="detail-item merke-row">
+                                <div class="merke-info">
+                                    <span class="label">Merkenavn:</span>
+                                    <span class="value"><%= flokk.merkeNavn %></span>
+                                </div>
+                                <div class="bumerke-thumbnail">
+                                    <img src="<%= flokk.merkeBilde %>" alt="Bumerke" onerror="this.src='/assets/icons/favicon.ico'; this.classList.add('fallback-image');" />
+                                </div>
                             </div>
                             <div class="detail-item">
                                 <span class="label">Beiteområde:</span>
@@ -119,14 +123,6 @@
                 </div>
             </div>
         <% } %>
-
-        <!-- Modal for showing merke images - hidden by default -->
-        <div id="merkeModal" class="modal" style="display: none;">
-            <span class="close">&times;</span>
-            <div class="modal-content">
-                <img id="merkeImage" src="" alt="Bumerke" />
-            </div>
-        </div>
     </main>
 </body>
 <%- include('components/footer.ejs') %>

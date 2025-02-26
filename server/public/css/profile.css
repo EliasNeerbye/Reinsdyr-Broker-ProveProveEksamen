@@ -1,6 +1,3 @@
-/* Profile page specific styles */
-
-/* Profile header */
 .profile-header {
     background-color: var(--card-background);
     border-radius: 15px;
@@ -53,7 +50,6 @@
     color: var(--text-dark);
 }
 
-/* Section headers */
 .section-header {
     display: flex;
     justify-content: space-between;
@@ -67,14 +63,12 @@
     margin: 0;
 }
 
-/* Flokker container */
 .flokker-container {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
     gap: 2rem;
 }
 
-/* Flokk card */
 .flokk-card {
     background-color: var(--card-background);
     border-radius: 15px;
@@ -120,6 +114,21 @@
     display: flex;
     align-items: center;
     flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.merke-row {
+    justify-content: space-between;
+    background-color: rgba(248, 248, 248, 0.5);
+    padding: 0.5rem;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+}
+
+.merke-info {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
 }
 
 .detail-item .label {
@@ -134,22 +143,30 @@
     color: var(--accent-dark);
 }
 
-.merke-preview-btn {
-    margin-left: auto;
-    background-color: var(--accent-light);
-    color: var(--accent-dark);
-    border: none;
-    border-radius: 12px;
-    padding: 0.2rem 0.5rem;
-    cursor: pointer;
-    font-size: 0.8rem;
-    transition: all 0.2s ease;
+.bumerke-thumbnail {
+    width: 50px;
+    height: 50px;
+    border-radius: 6px;
+    overflow: hidden;
+    margin-left: 10px;
+    border: 1px solid var(--border);
+    box-shadow: 0 2px 4px var(--shadow);
 }
 
-.merke-preview-btn:hover {
-    background-color: var(--accent);
-    color: white;
+.bumerke-thumbnail img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
 }
+
+.bumerke-thumbnail img.fallback-image {
+    padding: 5px;
+    object-fit: contain;
+    opacity: 0.7;
+}
+
+/* Removed merke-preview-btn styles as requested */
 
 .flokk-actions {
     display: flex;
@@ -191,7 +208,6 @@
     color: white;
 }
 
-/* Reinsdyr Details Container */
 .reinsdyr-details-container {
     background-color: var(--card-background);
     border-radius: 15px;
@@ -231,7 +247,6 @@
     font-size: 1.3rem;
 }
 
-/* Pagination Controls */
 .pagination-controls {
     display: flex;
     justify-content: space-between;
@@ -297,13 +312,11 @@
     color: var(--accent-dark);
 }
 
-/* Table styles */
 .reinsdyr-table-container {
     overflow-x: auto;
     margin-bottom: 1rem;
 }
 
-/* Loading indicator */
 .loading-indicator {
     display: flex;
     flex-direction: column;
@@ -327,18 +340,15 @@
     100% { transform: rotate(360deg); }
 }
 
-/* Utility classes */
 .hidden {
     display: none !important;
 }
 
-/* Empty state for no reinsdyr */
 #no-reinsdyr {
     padding: 2rem;
     text-align: center;
 }
 
-/* Responsive design */
 @media (max-width: 768px) {
     .flokker-container {
         grid-template-columns: 1fr;

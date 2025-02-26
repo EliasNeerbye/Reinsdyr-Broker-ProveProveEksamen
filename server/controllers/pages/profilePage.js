@@ -24,7 +24,7 @@ const profilePage = async (req, res) => {
         const pageData = createPageData(req, {
             title: "Profil",
             cssLinks: ["/css/profile.css"],
-            scriptLinks: ["/js/profilePagination.js", "/js/pictureModal.js"],
+            scriptLinks: ["/js/profilePagination.js"],
         });
 
         pageData.eier = {
