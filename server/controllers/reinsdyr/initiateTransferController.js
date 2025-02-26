@@ -10,7 +10,7 @@ const initiateTransfer = async (req, res) => {
         if (!reinsdyrId || !tilEierEpost) {
             return res.status(400).json({
                 success: false,
-                message: "Reinsdyr ID og mottakers e-post er påkrevd",
+                message: "Reinsdyr ID og mottaker e-post er påkrevd",
             });
         }
 
@@ -41,7 +41,7 @@ const initiateTransfer = async (req, res) => {
         if (!tilEier) {
             return res.status(404).json({
                 success: false,
-                message: "Finner ingen bruker med denne e-postadressen",
+                message: "Finner ingen eier med denne e-postadressen",
             });
         }
 

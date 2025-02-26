@@ -19,6 +19,7 @@ const logoutPage = require("../controllers/pages/logoutPage");
 const registerReinPage = require("../controllers/pages/registerReinPage");
 const transferReinPage = require("../controllers/pages/transferReinPage");
 const initiateTransferPage = require("../controllers/pages/initiateTransferPage");
+const transaksjonsPage = require("../controllers/pages/transaksjonsPage");
 const respondTransferPage = require("../controllers/pages/respondTransferPage");
 const confirmTransferPage = require("../controllers/pages/confirmTransferPage");
 
@@ -41,6 +42,7 @@ router.get("/logout", logoutPage);
 router.get("/registerRein", registerReinPage);
 router.get("/transferRein", transferReinPage);
 router.get("/initiateTransfer", initiateTransferPage);
+router.get("/transaksjoner", transaksjonsPage);
 router.get("/respondTransfer", respondTransferPage);
 router.get("/confirmTransfer", confirmTransferPage);
 
