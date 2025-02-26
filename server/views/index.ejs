@@ -19,78 +19,6 @@
             </datalist>
         </search>
         <div class="results" id="resultDiv">
-            <% if (userData) { %>
-                <h2>Mine registreringer</h2>
-                
-                <% if (userData.flokker && userData.flokker.length > 0) { %>
-                    <h3>Mine flokker</h3>
-                    <table class="results-table flokk-table">
-                        <thead>
-                            <tr>
-                                <th>Navn</th>
-                                <th>Serienummer</th>
-                                <th>Merke</th>
-                                <th>Antall Reinsdyr</th>
-                                <th>Handlinger</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <% userData.flokker.forEach(function(flokk) { %>
-                                <tr>
-                                    <td><%= flokk.navn %></td>
-                                    <td><%= flokk.serienummer %></td>
-                                    <td>
-                                        <%= flokk.merkeNavn %>
-                                        <% if (flokk.merkeBildelenke) { %>
-                                            <button class="merke-preview-btn" data-src="<%= flokk.merkeBildelenke %>" title="Trykk for å se merkebilde">Vis merke</button>
-                                        <% } %>
-                                    </td>
-                                    <td><%= flokk.reinsdyrCount %></td>
-                                    <td>
-                                        <button class="action-btn edit-btn" data-id="<%= flokk.id %>" data-type="flokk">Endre</button>
-                                        <% if (flokk.reinsdyrCount === 0) { %>
-                                            <button class="action-btn delete-btn" data-id="<%= flokk.id %>" data-type="flokk">Slett</button>
-                                        <% } %>
-                                    </td>
-                                </tr>
-                            <% }); %>
-                        </tbody>
-                    </table>
-                    
-                    <% userData.flokker.forEach(function(flokk) { %>
-                        <% if (flokk.reinsdyr && flokk.reinsdyr.length > 0) { %>
-                            <h3>Reinsdyr i <%= flokk.navn %></h3>
-                            <table class="results-table reinsdyr-table">
-                                <thead>
-                                    <tr>
-                                        <th>Navn</th>
-                                        <th>Serienummer</th>
-                                        <th>Fødselsdato</th>
-                                        <th>Handlinger</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <% flokk.reinsdyr.forEach(function(rein) { %>
-                                        <tr>
-                                            <td><%= rein.navn %></td>
-                                            <td><%= rein.serienummer %></td>
-                                            <td><%= rein.fødselsdato %></td>
-                                            <td>
-                                                <button class="action-btn edit-btn" data-id="<%= rein.id %>" data-type="reinsdyr">Endre</button>
-                                                <button class="action-btn delete-btn" data-id="<%= rein.id %>" data-type="reinsdyr">Slett</button>
-                                            </td>
-                                        </tr>
-                                    <% }); %>
-                                </tbody>
-                            </table>
-                        <% } %>
-                    <% }); %>
-                <% } else { %>
-                    <div class="empty-state">
-                        <p>Du har ikke registrert noen flokker ennå.</p>
-                    </div>
-                <% } %>
-            <% } else { %>
                 <h2>Søk etter:</h2>
                 <ul>
                     <li>Navn</li>
@@ -99,23 +27,8 @@
                     <li>Språk</li>
                     <li><i>Og mye annet!</i></li>
                 </ul>
-                
-                <div class="welcome-message">
-                    <p>Velkommen til Kukkik Ano - en digital plattform for administrasjon av reinsdyrflokker.</p>
-                    <p>For å registrere og administrere dine egne flokker, vennligst <a href="/login">logg inn</a> eller <a href="/register">registrer</a> en ny konto.</p>
-                </div>
-            <% } %>
+                <h2><u>Sjekk profilen din for å se dine registrerte flokker og reinsdyr</u></h2>
         </div>
     </main>
-    
-    <!-- Modal for displaying merke images -->
-    <% if (userData) { %>
-    <div id="merkeModal" class="modal">
-        <div class="modal-content">
-            <span class="close">&times;</span>
-            <img id="merkeImage" src="" alt="Merkebilde">
-        </div>
-    </div>
-    <% } %>
 </body>
 <%- include('components/footer.ejs') %>
