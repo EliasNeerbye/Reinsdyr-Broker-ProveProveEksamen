@@ -72,4 +72,32 @@ echo "Restarting and enabling nginx..."
 sudo systemctl restart nginx
 sudo systemctl enable nginx
 
+# --- 10. Create the .env file dynamically ---
+echo "Creating .env file..."
+
+# Get the current machine's primary IP
+machine_ip=$(ip route get 1 | awk '{print $NF; exit}')
+
+# Compute the MongoDB IP by incrementing the last octet by 1
+mongo_ip=$(echo "$machine_ip" | awk -F. '{
+    OFS="."; 
+    $4 = $4 + 1; 
+    print
+}')
+
+# Generate the .env file
+cat <<EOF > .env
+MONGO_USER=username
+MONGO_PWD=password
+MONGO_IP=${mongo_ip}:27017
+
+SALT_ROUNDS=10
+PROD_TRUE=false
+SESSION_SECRET=$(node ./super-secret.js)
+PORT=3000
+
+APP_IP=${machine_ip}
+SSL_STATE=http
+EOF
+
 echo "Setup complete."
