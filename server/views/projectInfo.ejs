@@ -2,39 +2,281 @@
 <body>
     <%- include('components/nav.ejs') %>
     <main>
-        <div class="faq-container">
+        <div class="project-container">
             <h2>Prosjekt Informasjon</h2>
 
-            <h3><span>🗂️</span> Prosjektoversikt</h3>
-            <p>Kukkik Ano er et digitalt administrasjonsverktøy for reinsdyreiere, utviklet for å forenkle dokumentasjon og sporing av reinsdyrflokker.</p>
+            <section class="project-section">
+                <h3><span>🗂️</span> Prosjektoversikt</h3>
+                <p>Kukkik Ano er et digitalt administrasjonsverktøy for reinsdyreiere, utviklet for å forenkle dokumentasjon og sporing av reinsdyrflokker. Systemet støtter forvaltning av reinsdyr på tvers av alle samiske språkregioner og tilhørende geografiske områder.</p>
+            </section>
 
-            <h3><span>📋</span> Database Struktur</h3>
-            <p>Prosjektet benytter følgende hovedmodeller:</p>
-            <ul>
-                <li><strong>Eier:</strong> Representerer brukere av systemet</li>
-                <li><strong>Flokk:</strong> Gruppering av reinsdyr under en eier</li>
-                <li><strong>Reinsdyr:</strong> Individuell registrering av reinsdyr</li>
-                <li><strong>Beiteområde:</strong> Geografiske områder for reinbeite</li>
-            </ul>
+            <section class="project-section">
+                <h3><span>🔑</span> Hovedfunksjoner</h3>
+                <div class="feature-cards">
+                    <div class="feature-card">
+                        <strong>Brukeradministrasjon</strong>
+                        Registrering og autentisering av reinsdyreiere med sikker pålogging
+                    </div>
+                    <div class="feature-card">
+                        <strong>Flokkhåndtering</strong>
+                        Opprette og administrere reinsdyrflokker med bumerker
+                    </div>
+                    <div class="feature-card">
+                        <strong>Reinsdyrregistrering</strong>
+                        Detaljert informasjon om hvert enkelt reinsdyr
+                    </div>
+                    <div class="feature-card">
+                        <strong>Intern overføring</strong>
+                        Flytte reinsdyr mellom flokker tilhørende samme eier
+                    </div>
+                    <div class="feature-card">
+                        <strong>Ekstern overføring</strong>
+                        Transaksjonssystem for overføring mellom eiere
+                    </div>
+                    <div class="feature-card">
+                        <strong>Beiteområder</strong>
+                        Håndtering av geografiske regioner og språkområder
+                    </div>
+                </div>
+            </section>
 
-            <h3><span>🗺️</span> ER Diagram</h3>
-            <p>Nedenfor er en detaljert oversikt over databasestrukturen:</p>
-            <div class="er-diagram-container">
-                <img src="/assets/images/ERdiagram.png" alt="ER Diagram for Kukkik Ano" />
-            </div>
+            <section class="project-section">
+                <h3><span>🔄</span> Transaksjonssystem</h3>
+                <p>En sentral funksjon i Kukkik Ano er transaksjonssystemet for overføring av reinsdyr mellom eiere:</p>
+                
+                <div class="workflow">
+                    <div class="workflow-step">
+                        <strong>1. Initiering</strong>
+                        Eier sender en forespørsel
+                    </div>
+                    <div class="workflow-step">
+                        <strong>2. Godkjenning</strong>
+                        Ny eier godtar/avslår
+                    </div>
+                    <div class="workflow-step">
+                        <strong>3. Velge flokk</strong>
+                        Mottaker velger målflokk
+                    </div>
+                    <div class="workflow-step">
+                        <strong>4. Bekreftelse</strong>
+                        Original eier bekrefter
+                    </div>
+                    <div class="workflow-step">
+                        <strong>5. Fullføring</strong>
+                        Reinsdyr blir overført
+                    </div>
+                </div>
+                
+                <p>Hver transaksjon lagres med full historikk, inkludert meldinger, datoer og status. Dette sikrer sporbarhet og etterprøvbarhet i systemet.</p>
+            </section>
 
-            <h3><span>🚀</span> Prosjektplanlegging</h3>
-            <p>Prosjektutviklingen følges opp på GitHub Projects:</p>
-            <p><a href="https://github.com/users/EliasNeerbye/projects/5" target="_blank" rel="noopener noreferrer">🔗 Prosjekt Tavle</a></p>
+            <section class="project-section">
+                <h3><span>📋</span> Database Struktur</h3>
+                <div class="two-column">
+                    <div>
+                        <p>Prosjektet benytter følgende hovedmodeller:</p>
+                        <ul>
+                            <li><strong>Eier:</strong> Representerer brukere av systemet med kontaktinformasjon og språkpreferanser</li>
+                            <li><strong>Flokk:</strong> Gruppering av reinsdyr under en eier, tilknyttet et beiteområde</li>
+                            <li><strong>Reinsdyr:</strong> Individuell registrering av reinsdyr med unik identifikasjon</li>
+                            <li><strong>Beiteområde:</strong> Geografiske områder for reinbeite, organisert etter samiske språkregioner</li>
+                            <li><strong>Transaksjon:</strong> Håndterer overføringsprosessen av reinsdyr mellom eiere</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <p>Systemet følger en tradisjonell MVC-arkitektur:</p>
+                        <ul>
+                            <li><strong>Models:</strong> Mongoose-skjemaer som definerer databasestrukturen</li>
+                            <li><strong>Views:</strong> EJS-maler som genererer brukergrensesnittet</li>
+                            <li><strong>Controllers:</strong> Forretningslogikk som håndterer brukerforespørsler</li>
+                            <li><strong>Routes:</strong> Definerer API-endepunkter og navigasjonsflyt</li>
+                            <li><strong>Middleware:</strong> Håndterer autentisering og validering</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
 
-            <h3><span>📦</span> Teknologier</h3>
-            <ul>
-                <li>Backend: Node.js, Express.js</li>
-                <li>Database: MongoDB, Mongoose</li>
-                <li>Frontend: EJS, JavaScript, CSS</li>
-                <li>Autentisering: Express-session, Bcrypt</li>
-            </ul>
+            <section class="project-section">
+                <h3><span>🗺️</span> ER Diagram</h3>
+                <p>Nedenfor er en detaljert oversikt over databasestrukturen:</p>
+                <div class="er-diagram-container">
+                    <img src="/assets/images/ERdiagram.png" alt="ER Diagram for Kukkik Ano" />
+                </div>
+            </section>
+
+            <section class="project-section">
+                <h3><span>🔐</span> Sikkerhet og Ytelse</h3>
+                <div class="two-column">
+                    <div>
+                        <strong>Sikkerhetstiltak:</strong>
+                        <ul>
+                            <li>Passord lagres med bcrypt-kryptering</li>
+                            <li>Express-session med MongoDB-lagring</li>
+                            <li>Tilgangskontroll med autoriserings-middleware</li>
+                            <li>Validering av all brukerinput</li>
+                            <li>CORS-beskyttelse</li>
+                            <li>Helmet for sikkerhetstiltak</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <strong>Responsivt Design:</strong>
+                        <ul>
+                            <li>Tilpasning til desktop, tablet og mobil</li>
+                            <li>Dynamisk sidevisning</li>
+                            <li>Optimalisert for ulike skjermstørrelser</li>
+                            <li>Pagineringsløsning for større datasett</li>
+                            <li>Rask og responsiv brukeropplevelse</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <section class="project-section">
+                <h3><span>🌐</span> Flerspråklig Støtte</h3>
+                <p>Systemet er designet med tanke på samiske språkregioner og støtter følgende språkområder:</p>
+                <div class="two-column">
+                    <div>
+                        <strong>Vestsamiske språk:</strong>
+                        <ul>
+                            <li>Sørsamisk</li>
+                            <li>Umesamisk</li>
+                            <li>Pitesamisk</li>
+                            <li>Lulesamisk</li>
+                            <li>Nordsamisk</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <strong>Østsamiske språk:</strong>
+                        <ul>
+                            <li>Enaresamisk</li>
+                            <li>Skoltsamisk</li>
+                            <li>Akkalasamisk</li>
+                            <li>Kildinsamisk</li>
+                            <li>Tersamisk</li>
+                        </ul>
+                    </div>
+                </div>
+                <p>Denne språkinndelingen brukes både for brukerpreferanser og for geografisk organisering av beiteområder.</p>
+            </section>
+
+            <section class="project-section">
+                <h3><span>📦</span> Teknologier</h3>
+                <div class="tech-grid">
+                    <div class="tech-item">
+                        <strong>Node.js</strong>
+                        Backend runtime
+                    </div>
+                    <div class="tech-item">
+                        <strong>Express.js</strong>
+                        Web rammeverk
+                    </div>
+                    <div class="tech-item">
+                        <strong>MongoDB</strong>
+                        NoSQL database
+                    </div>
+                    <div class="tech-item">
+                        <strong>Mongoose</strong>
+                        ODM for MongoDB
+                    </div>
+                    <div class="tech-item">
+                        <strong>EJS</strong>
+                        Template engine
+                    </div>
+                    <div class="tech-item">
+                        <strong>Bcrypt</strong>
+                        Passord kryptering
+                    </div>
+                    <div class="tech-item">
+                        <strong>Express-session</strong>
+                        Sesjonshåndtering
+                    </div>
+                    <div class="tech-item">
+                        <strong>Validator.js</strong>
+                        Inputvalidering
+                    </div>
+                    <div class="tech-item">
+                        <strong>UUID</strong>
+                        ID-generering
+                    </div>
+                    <div class="tech-item">
+                        <strong>PM2</strong>
+                        Prosesshåndtering
+                    </div>
+                    <div class="tech-item">
+                        <strong>Nginx</strong>
+                        Webserver/proxy
+                    </div>
+                    <div class="tech-item">
+                        <strong>Helmet</strong>
+                        Sikkerhet
+                    </div>
+                </div>
+            </section>
+
+            <section class="project-section">
+                <h3><span>🚀</span> Prosjektplanlegging</h3>
+                <p>Prosjektutviklingen følges opp på GitHub Projects:</p>
+                <p><a href="https://github.com/users/EliasNeerbye/projects/5" target="_blank" rel="noopener noreferrer" class="project-link">🔗 Prosjekt Tavle</a></p>
+            </section>
+
+            <section class="project-section">
+                <h3><span>🌱</span> Fremtidige Utvidelser</h3>
+                <div class="feature-cards">
+                    <div class="feature-card">
+                        <strong>Avansert statistikk</strong>
+                        Dybdeanalyse og rapporteringsverktøy
+                    </div>
+                    <div class="feature-card">
+                        <strong>Data eksport</strong>
+                        Eksport til Excel, CSV og PDF
+                    </div>
+                    <div class="feature-card">
+                        <strong>Mobilapplikasjon</strong>
+                        Dedikert app for feltarbeid
+                    </div>
+                    <div class="feature-card">
+                        <strong>Offentlige integrasjoner</strong>
+                        Kobling mot relevante registre
+                    </div>
+                    <div class="feature-card">
+                        <strong>Notifikasjoner</strong>
+                        Automatisk varsling om viktige hendelser
+                    </div>
+                    <div class="feature-card">
+                        <strong>Full flerspråklighet</strong>
+                        Komplett grensesnitt på alle samiske språk
+                    </div>
+                </div>
+            </section>
         </div>
     </main>
+
+    <script>
+        // Add simple accordion functionality for mobile view
+        document.addEventListener('DOMContentLoaded', function() {
+            if (window.innerWidth <= 768) {
+                const headers = document.querySelectorAll('.project-section h3');
+                
+                headers.forEach(header => {
+                    const section = header.parentElement;
+                    const content = document.createElement('div');
+                    
+                    // Move all content after the header into the content div
+                    while (section.children[1] && section.children[1] !== content) {
+                        content.appendChild(section.children[1]);
+                    }
+                    
+                    content.className = 'collapsible-content';
+                    header.className = 'collapsible-header';
+                    
+                    section.appendChild(content);
+                    
+                    header.addEventListener('click', function() {
+                        this.classList.toggle('active');
+                    });
+                });
+            }
+        });
+    </script>
 </body>
 <%- include('components/footer.ejs') %>
