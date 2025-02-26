@@ -64,10 +64,12 @@ app.use(
 
 const authRoutes = require("./routes/authRoutes");
 const reinsdyrRoutes = require("./routes/reinsdyrRoutes");
+const transactionRoutes = require("./routes/transactionRoutes");
 const flokkRoutes = require("./routes/flokkRoutes");
 const getRoutes = require("./routes/getRoutes");
 
 app.use("/auth", authRoutes);
+app.use("/transaksjon", transactionRoutes);
 app.use("/reinsdyr", reinsdyrRoutes);
 app.use("/flokk", flokkRoutes);
 app.use("/", getRoutes);

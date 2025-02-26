@@ -18,6 +18,9 @@ const logoutPage = require("../controllers/pages/logoutPage");
 // Reinsdyr
 const registerReinPage = require("../controllers/pages/registerReinPage");
 const transferReinPage = require("../controllers/pages/transferReinPage");
+const initiateTransferPage = require("../controllers/pages/initiateTransferPage");
+const respondTransferPage = require("../controllers/pages/respondTransferPage");
+const confirmTransferPage = require("../controllers/pages/confirmTransferPage");
 
 // Flokk
 const registerFlokkPage = require("../controllers/pages/registerFlokkPage");
@@ -37,6 +40,9 @@ router.get("/logout", logoutPage);
 
 router.get("/registerRein", registerReinPage);
 router.get("/transferRein", transferReinPage);
+router.get("/initiateTransfer", initiateTransferPage);
+router.get("/respondTransfer", respondTransferPage);
+router.get("/confirmTransfer", confirmTransferPage);
 
 router.get("/registerFlokk", registerFlokkPage);
 
