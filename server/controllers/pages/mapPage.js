@@ -5,7 +5,6 @@ const mapPage = async (req, res) => {
         const pageData = createPageData(req, {
             title: "Kart",
             cssLinks: ["/css/home.css", "/css/map.css"],
-            scriptLinks: ["/js/navFunctionality.js"],
         });
 
         res.render("map", pageData);

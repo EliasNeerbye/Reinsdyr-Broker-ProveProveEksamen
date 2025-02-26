@@ -13,7 +13,7 @@ const registerFlokkPage = async (req, res) => {
         const pageData = createPageData(req, {
             title: "Registrer Flokk",
             cssLinks: ["/css/auth.css", "/css/registerFlokk.css"],
-            scriptLinks: ["/js/navFunctionality.js", "/js/registerFlokk.js"],
+            scriptLinks: ["/js/registerFlokk.js"],
         });
 
         pageData.beiteOptions = beiteOptions;

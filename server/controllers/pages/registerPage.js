@@ -13,7 +13,7 @@ const registerPage = async (req, res) => {
         const pageData = createPageData(req, {
             title: "Registrer",
             cssLinks: ["/css/auth.css"],
-            scriptLinks: ["/js/navFunctionality.js", "/js/register.js"],
+            scriptLinks: ["/js/register.js"],
         });
 
         pageData.språkOptions = språkOptions;

@@ -9,7 +9,7 @@ const loginPage = async (req, res) => {
         const pageData = createPageData(req, {
             title: "Logg inn",
             cssLinks: ["/css/auth.css"],
-            scriptLinks: ["/js/navFunctionality.js", "/js/login.js"],
+            scriptLinks: ["/js/login.js"],
         });
 
         res.render("login", pageData);

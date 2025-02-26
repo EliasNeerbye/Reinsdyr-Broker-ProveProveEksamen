@@ -5,7 +5,6 @@ const faqPage = async (req, res) => {
         const pageData = createPageData(req, {
             title: "Ofte stilte spørsmål",
             cssLinks: ["/css/home.css", "/css/faq.css"],
-            scriptLinks: ["/js/navFunctionality.js"],
         });
 
         res.render("faq", pageData);

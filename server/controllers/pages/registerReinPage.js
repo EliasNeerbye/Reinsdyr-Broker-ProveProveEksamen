@@ -16,7 +16,7 @@ const registerReinPage = async (req, res) => {
         const pageData = createPageData(req, {
             title: "Registrer Reinsdyr",
             cssLinks: ["/css/auth.css", "/css/registerRein.css"],
-            scriptLinks: ["/js/navFunctionality.js", "/js/registerRein.js"],
+            scriptLinks: ["/js/registerRein.js"],
         });
 
         pageData.flokker = flokker;

@@ -7,6 +7,7 @@ const indexPage = require("../controllers/pages/indexPage");
 const faqPage = require("../controllers/pages/faqPage");
 const mapPage = require("../controllers/pages/mapPage");
 const projectInfoPage = require("../controllers/pages/projectInfoPage");
+const profilePage = require("../controllers/pages/profilePage");
 const searchFunction = require("../controllers/pages/searchFunction");
 
 // Auth
@@ -26,6 +27,7 @@ router.get("/", indexPage);
 router.get("/faq", faqPage);
 router.get("/map", mapPage);
 router.get("/projectInfo", projectInfoPage);
+router.get("/profile", profilePage);
 router.get("/search", searchFunction);
 
 router.get("/register", registerPage);

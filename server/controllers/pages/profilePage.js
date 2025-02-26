@@ -1,15 +1,16 @@
 const { createPageData } = require("../../utils/pageUtils");
 
-const projectInfoPage = async (req, res) => {
+const profilePage = async (req, res) => {
     try {
         const pageData = createPageData(req, {
-            title: "Prosjekt Informasjon",
-            cssLinks: ["/css/home.css", "/css/faq.css", "/css/projectInfo.css"],
+            title: "Profil",
+            cssLinks: ["/css/profile.css"],
+            scriptLinks: ["/js/profilePagination.js"],
         });
 
-        res.render("projectInfo", pageData);
+        res.render("profile", pageData);
     } catch (error) {
-        console.error("Error in projectInfoPage:", error);
+        console.error("Error in profilePage:", error);
         res.status(500).render(
             "error",
             createPageData(req, {
@@ -20,4 +21,4 @@ const projectInfoPage = async (req, res) => {
     }
 };
 
-module.exports = projectInfoPage;
+module.exports = profilePage;
