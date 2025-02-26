@@ -40,7 +40,7 @@ erDiagram
         String epost UK
         String passord
         String telefon UK
-        String kontaktspråk "Soor|Ume|Pite|Lule|Nord|Enare|Skolt|Akkala|Kildin|Ter"
+        String kontaktspraak "Soor|Ume|Pite|Lule|Nord|Enare|Skolt|Akkala|Kildin|Ter"
         String rolle "Admin|User"
         ObjectId[] flokker FK "Ref: Flokk"
     }
@@ -53,7 +53,7 @@ erDiagram
         String merkeNavn UK
         String merkeBildelenke UK
         ObjectId[] reinsdyr FK "Ref: Reinsdyr"
-        ObjectId beiteområde FK "Ref: Beiteområde"
+        ObjectId beiteomraade FK "Ref: Beiteomraade"
     }
     
     Reinsdyr {
@@ -64,9 +64,9 @@ erDiagram
         Date foodselsdato
     }
 
-    Beiteområde {
+    Beiteomraade {
         ObjectId _id PK
-        String primærBeiteområde UK "Soor|Ume|Pite|Lule|Nord|Enare|Skolt|Akkala|Kildin|Ter"
+        String primeerBeiteomraade UK "Soor|Ume|Pite|Lule|Nord|Enare|Skolt|Akkala|Kildin|Ter"
         String[] fylker "Nordland|Troms|Finnmark|Troondelag|Norrbotten|Vaasterbotten|Jaamtland|Vaasternorrland|Lappi|Murmansk oblast|Republikken Karelen"
         ObjectId[] flokker FK "Ref: Flokk"
     }
@@ -88,8 +88,8 @@ erDiagram
     Eier ||--o{ Flokk : "eier"
     Eier ||--o{ Transaksjon : "sender/mottar"
     Flokk ||--o{ Reinsdyr : "inneholder"
-    Flokk }o--|| Beiteområde : "beiter_i"
-    Beiteområde ||--o{ Flokk : "omfatter"
+    Flokk }o--|| Beiteomraade : "beiter_i"
+    Beiteomraade ||--o{ Flokk : "omfatter"
     Reinsdyr ||--o{ Transaksjon : "er_del_av"
     Flokk ||--o{ Transaksjon : "involveres_i"
 ```
