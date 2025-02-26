@@ -1,0 +1,355 @@
+/* Profile page specific styles */
+
+/* Profile header */
+.profile-header {
+    background-color: var(--card-background);
+    border-radius: 15px;
+    box-shadow: 0 5px 15px var(--shadow);
+    padding: 2.5rem;
+    margin-bottom: 3rem;
+    border: 1px solid var(--border);
+    position: relative;
+    overflow: hidden;
+    animation: fadeIn 0.5s ease;
+}
+
+.profile-header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 5px;
+    background: linear-gradient(to right, var(--primary), var(--accent));
+}
+
+.profile-header h2 {
+    color: var(--primary-dark);
+    margin-bottom: 1rem;
+    font-size: 1.6rem;
+}
+
+.profile-info {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin-top: 1.5rem;
+}
+
+.info-item {
+    display: flex;
+    flex-direction: column;
+}
+
+.info-item .label {
+    font-weight: 600;
+    color: var(--accent-dark);
+    font-size: 0.9rem;
+    margin-bottom: 0.3rem;
+}
+
+.info-item .value {
+    font-size: 1rem;
+    color: var(--text-dark);
+}
+
+/* Section headers */
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+.section-header h3 {
+    color: var(--accent-dark);
+    font-size: 1.3rem;
+    margin: 0;
+}
+
+/* Flokker container */
+.flokker-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+    gap: 2rem;
+}
+
+/* Flokk card */
+.flokk-card {
+    background-color: var(--card-background);
+    border-radius: 15px;
+    box-shadow: 0 5px 10px var(--shadow);
+    padding: 1.8rem;
+    border: 1px solid var(--border);
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.flokk-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px var(--shadow);
+}
+
+.flokk-header {
+    margin-bottom: 1.5rem;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 1rem;
+}
+
+.flokk-header h4 {
+    margin: 0 0 0.3rem 0;
+    color: var(--primary-dark);
+    font-size: 1.2rem;
+}
+
+.flokk-serienummer {
+    color: var(--accent-dark);
+    font-size: 0.85rem;
+    font-weight: 500;
+}
+
+.flokk-details {
+    flex-grow: 1;
+    margin-bottom: 2rem;
+}
+
+.detail-item {
+    margin-bottom: 1.2rem;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.detail-item .label {
+    font-weight: 600;
+    color: var(--text-dark);
+    font-size: 0.85rem;
+    margin-right: 0.5rem;
+}
+
+.detail-item .value {
+    font-size: 0.85rem;
+    color: var(--accent-dark);
+}
+
+.merke-preview-btn {
+    margin-left: auto;
+    background-color: var(--accent-light);
+    color: var(--accent-dark);
+    border: none;
+    border-radius: 12px;
+    padding: 0.2rem 0.5rem;
+    cursor: pointer;
+    font-size: 0.8rem;
+    transition: all 0.2s ease;
+}
+
+.merke-preview-btn:hover {
+    background-color: var(--accent);
+    color: white;
+}
+
+.flokk-actions {
+    display: flex;
+    justify-content: space-between;
+    gap: 0.8rem;
+    margin-top: auto;
+}
+
+.view-reinsdyr-btn, .add-reinsdyr-btn {
+    flex: 1;
+    padding: 0.6rem;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.view-reinsdyr-btn {
+    background-color: var(--accent-light);
+    color: var(--accent-dark);
+    border: 1px solid var(--accent-light);
+}
+
+.view-reinsdyr-btn:hover {
+    background-color: var(--accent);
+    color: white;
+}
+
+.add-reinsdyr-btn {
+    background-color: var(--primary-light);
+    color: var(--primary-dark);
+    border: 1px solid var(--primary-light);
+    text-decoration: none;
+}
+
+.add-reinsdyr-btn:hover {
+    background-color: var(--primary);
+    color: white;
+}
+
+/* Reinsdyr Details Container */
+.reinsdyr-details-container {
+    background-color: var(--card-background);
+    border-radius: 15px;
+    box-shadow: 0 5px 15px var(--shadow);
+    padding: 2.5rem;
+    margin-top: 2rem;
+    border: 1px solid var(--border);
+    animation: fadeIn 0.5s ease;
+}
+
+.details-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 2.5rem;
+}
+
+.back-btn {
+    background-color: var(--primary-light);
+    color: var(--primary-dark);
+    border: none;
+    border-radius: 20px;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: all 0.2s ease;
+    margin-right: 1rem;
+}
+
+.back-btn:hover {
+    background-color: var(--primary);
+    color: white;
+}
+
+.details-header h3 {
+    margin: 0;
+    color: var(--accent-dark);
+    font-size: 1.3rem;
+}
+
+/* Pagination Controls */
+.pagination-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+    background-color: var(--accent-light);
+    padding: 1rem 1.5rem;
+    border-radius: 10px;
+}
+
+.pagination-buttons {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+}
+
+.pagination-btn {
+    background-color: var(--card-background);
+    color: var(--accent-dark);
+    border: 1px solid var(--accent);
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.pagination-btn:hover {
+    background-color: var(--accent);
+    color: white;
+}
+
+.pagination-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+#page-info {
+    font-size: 0.9rem;
+    color: var(--accent-dark);
+}
+
+.pagination-limit {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.pagination-limit label {
+    font-size: 0.9rem;
+    color: var(--accent-dark);
+}
+
+.pagination-limit select {
+    border: 1px solid var(--accent);
+    border-radius: 5px;
+    padding: 0.3rem;
+    font-size: 0.85rem;
+    background-color: var(--card-background);
+    color: var(--accent-dark);
+}
+
+/* Table styles */
+.reinsdyr-table-container {
+    overflow-x: auto;
+    margin-bottom: 1rem;
+}
+
+/* Loading indicator */
+.loading-indicator {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem 0;
+}
+
+.spinner {
+    width: 40px;
+    height: 40px;
+    border: 3px solid var(--accent-light);
+    border-top: 3px solid var(--accent);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin-bottom: 1rem;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Utility classes */
+.hidden {
+    display: none !important;
+}
+
+/* Empty state for no reinsdyr */
+#no-reinsdyr {
+    padding: 2rem;
+    text-align: center;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .flokker-container {
+        grid-template-columns: 1fr;
+    }
+    
+    .pagination-controls {
+        flex-direction: column;
+        gap: 0.8rem;
+    }
+    
+    .flokk-actions {
+        flex-direction: column;
+    }
+}

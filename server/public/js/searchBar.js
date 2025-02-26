@@ -154,6 +154,7 @@ async function search() {
             <li>Språk</li>
             <li><i>Og mye annet!</i></li>
         </ul>
+        <h3><u><a href="/profile">Sjekk profilen din for å se dine registrerte flokker og reinsdyr</a></u></h3>
         `;
     } else {
         document.getElementById("resultDiv").innerHTML = "<p>Skriv minst 3 tegn for å søke</p>";

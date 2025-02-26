@@ -2,7 +2,131 @@
 <body>
     <%- include('components/nav.ejs') %>
     <main>
-        <h2></h2>
+        <div class="profile-header">
+            <h2>Min profil</h2>
+            <div class="profile-info">
+                <div class="info-item">
+                    <span class="label">Navn:</span>
+                    <span class="value"><%= eier.navn %></span>
+                </div>
+                <div class="info-item">
+                    <span class="label">E-post:</span>
+                    <span class="value"><%= eier.epost %></span>
+                </div>
+                <div class="info-item">
+                    <span class="label">Telefon:</span>
+                    <span class="value"><%= eier.telefon %></span>
+                </div>
+                <div class="info-item">
+                    <span class="label">Kontaktspråk:</span>
+                    <span class="value"><%= eier.kontaktspråk %></span>
+                </div>
+            </div>
+        </div>
+
+        <div class="section-header">
+            <h3>Mine flokker</h3>
+            <% if (flokker.length > 0) { %>
+                <a href="/registerFlokk" class="add-btn">Legg til flokk</a>
+            <% } %>
+        </div>
+
+        <% if (flokker.length === 0) { %>
+            <div class="empty-state">
+                <p>Du har ingen registrerte flokker ennå.</p>
+                <a href="/registerFlokk" class="add-btn">Registrer din første flokk</a>
+            </div>
+        <% } else { %>
+            <div class="flokker-container">
+                <% flokker.forEach(function(flokk) { %>
+                    <div class="flokk-card" data-flokk-id="<%= flokk.id %>">
+                        <div class="flokk-header">
+                            <h4><%= flokk.navn %></h4>
+                            <span class="flokk-serienummer"><%= flokk.serienummer %></span>
+                        </div>
+                        <div class="flokk-details">
+                            <div class="detail-item">
+                                <span class="label">Merkenavn:</span>
+                                <span class="value"><%= flokk.merkeNavn %></span>
+                                <button class="merke-preview-btn" data-src="<%= flokk.merkeBilde %>">Vis</button>
+                            </div>
+                            <div class="detail-item">
+                                <span class="label">Beiteområde:</span>
+                                <span class="value"><%= flokk.beiteområde.navn %></span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="label">Fylker:</span>
+                                <span class="value"><%= flokk.beiteområde.fylker %></span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="label">Antall reinsdyr:</span>
+                                <span class="value"><%= flokk.reinsdyrCount %></span>
+                            </div>
+                        </div>
+                        <div class="flokk-actions">
+                            <button class="view-reinsdyr-btn" data-flokk-id="<%= flokk.id %>">Vis reinsdyr</button>
+                            <a href="/registerRein?flokkId=<%= flokk.id %>" class="add-reinsdyr-btn">Legg til reinsdyr</a>
+                        </div>
+                    </div>
+                <% }); %>
+            </div>
+
+            <div id="reinsdyr-details" class="reinsdyr-details-container hidden">
+                <div class="details-header">
+                    <button id="back-to-flokker" class="back-btn">&larr; Tilbake til flokker</button>
+                    <h3 id="reinsdyr-flokk-name"></h3>
+                </div>
+                <div class="pagination-controls">
+                    <div class="pagination-buttons">
+                        <button id="prev-page" class="pagination-btn">&lt;</button>
+                        <span id="page-info">Side <span id="current-page">1</span> av <span id="total-pages">1</span></span>
+                        <button id="next-page" class="pagination-btn">&gt;</button>
+                    </div>
+                    <div class="pagination-limit">
+                        <label for="items-per-page">Vis:</label>
+                        <select id="items-per-page">
+                            <option value="5">5</option>
+                            <option value="10" selected>10</option>
+                            <option value="15">15</option>
+                            <option value="20">20</option>
+                            <option value="30">30</option>
+                            <option value="50">50</option>
+                            <option value="100">100</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="reinsdyr-table-container">
+                    <table id="reinsdyr-table" class="results-table reinsdyr-table">
+                        <thead>
+                            <tr>
+                                <th>Navn</th>
+                                <th>Serienummer</th>
+                                <th>Fødselsdato</th>
+                                <th>Handlinger</th>
+                            </tr>
+                        </thead>
+                        <tbody id="reinsdyr-tbody">
+                            <!-- Reinsdyr rows will be populated here -->
+                        </tbody>
+                    </table>
+                </div>
+                <div id="loading-indicator" class="loading-indicator hidden">
+                    <div class="spinner"></div>
+                    <p>Laster reinsdyr...</p>
+                </div>
+                <div id="no-reinsdyr" class="empty-state hidden">
+                    <p>Ingen reinsdyr funnet i denne flokken.</p>
+                </div>
+            </div>
+        <% } %>
+
+        <!-- Modal for showing merke images - hidden by default -->
+        <div id="merkeModal" class="modal" style="display: none;">
+            <span class="close">&times;</span>
+            <div class="modal-content">
+                <img id="merkeImage" src="" alt="Bumerke" />
+            </div>
+        </div>
     </main>
 </body>
 <%- include('components/footer.ejs') %>
