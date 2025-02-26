@@ -75,15 +75,13 @@ sudo systemctl enable nginx
 # --- 10. Create the .env file dynamically ---
 echo "Creating .env file..."
 
-# Get the current machine's primary IP
-machine_ip=$(ip route get 1 | awk '{print $NF; exit}')
+# Get the machine's primary IP address
+machine_ip=$(hostname -I | awk '{print $1}')
+mongo_ip=$(echo "$machine_ip" | awk -F. '{OFS="."; $4+=1; print}')
 
-# Compute the MongoDB IP by incrementing the last octet by 1
-mongo_ip=$(echo "$machine_ip" | awk -F. '{
-    OFS="."; 
-    $4 = $4 + 1; 
-    print
-}')
+echo "Machine IP: $machine_ip"
+echo "MongoDB IP: $mongo_ip"
+
 
 # Generate the .env file
 cat <<EOF > .env
