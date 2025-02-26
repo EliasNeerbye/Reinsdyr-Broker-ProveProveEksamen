@@ -1,0 +1,99 @@
+.form-container {
+    max-width: 500px;
+    animation: slideUp 0.5s ease forwards;
+}
+
+.reinsdyr-info {
+    background-color: var(--accent-light);
+    border-radius: 12px;
+    padding: 1.2rem;
+    margin-bottom: 1.5rem;
+    border: 1px solid rgba(129, 183, 217, 0.3);
+    position: relative;
+}
+
+.reinsdyr-info h3 {
+    margin-top: 0;
+    margin-bottom: 1rem;
+    font-size: 1.1rem;
+    color: var(--accent-dark);
+    border-bottom: 1px solid rgba(129, 183, 217, 0.3);
+    padding-bottom: 0.5rem;
+}
+
+.detail-item {
+    margin-bottom: 0.8rem;
+    display: flex;
+    align-items: baseline;
+}
+
+.detail-item:last-child {
+    margin-bottom: 0;
+}
+
+.detail-item .label {
+    font-weight: 600;
+    color: var(--accent-dark);
+    width: 40%;
+    font-size: 0.9rem;
+}
+
+.detail-item .value {
+    color: var(--text-dark);
+    font-size: 0.9rem;
+}
+
+.back-link {
+    color: var(--accent-dark);
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    font-weight: 500;
+    transition: color 0.2s ease;
+}
+
+.back-link:hover {
+    color: var(--primary-dark);
+    text-decoration: underline;
+}
+
+/* Add a little flourish to the form */
+.form-container::after {
+    content: "";
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    right: -5px;
+    bottom: -5px;
+    background: linear-gradient(to bottom right, var(--accent-light), var(--primary-light));
+    z-index: -1;
+    border-radius: 15px;
+    opacity: 0.4;
+}
+
+/* Custom style for the buttons */
+.submitBtn {
+    background: linear-gradient(to right, var(--accent), var(--primary));
+}
+
+.submitBtn:hover {
+    background: linear-gradient(to right, var(--accent-dark), var(--primary-dark));
+}
+
+.submitBtn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none !important;
+}
+
+/* Animation */
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

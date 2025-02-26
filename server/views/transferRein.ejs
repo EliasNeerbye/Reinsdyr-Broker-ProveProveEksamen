@@ -1,0 +1,55 @@
+<%- include('components/header.ejs') %>
+<body>
+    <%- include('components/nav.ejs') %>
+    <main>
+        <div class="form-container">
+            <h2>Overfør Reinsdyr</h2>
+            <div class="reinsdyr-info">
+                <h3>Reinsdyr detaljer:</h3>
+                <div class="detail-item">
+                    <span class="label">Navn:</span>
+                    <span class="value"><%= reinsdyr.navn %></span>
+                </div>
+                <div class="detail-item">
+                    <span class="label">Serienummer:</span>
+                    <span class="value"><%= reinsdyr.serienummer %></span>
+                </div>
+                <div class="detail-item">
+                    <span class="label">Fødselsdato:</span>
+                    <span class="value"><%= reinsdyr.fødselsdato %></span>
+                </div>
+                <div class="detail-item">
+                    <span class="label">Nåværende flokk:</span>
+                    <span class="value"><%= reinsdyr.flokkNavn %> (<%= reinsdyr.flokkSerienummer %>)</span>
+                </div>
+            </div>
+
+            <form id="transferReinForm">
+                <input type="hidden" id="reinsdyrId" name="reinsdyrId" value="<%= reinsdyr.id %>">
+                
+                <div class="form-group">
+                    <label for="targetFlokkId">Velg målflokk:</label>
+                    <select id="targetFlokkId" name="targetFlokkId" required>
+                        <option value="" disabled selected>Velg flokk</option>
+                        <% flokker.forEach(function(flokk) { %>
+                        <option value="<%= flokk._id %>"><%= flokk.flokkNavn %> (<%= flokk.flokkSerienummer %>)</option>
+                        <% }); %>
+                    </select>
+                </div>
+
+                <% if (flokker.length === 0) { %>
+                <div class="form-message error">
+                    Du har ingen andre flokker å overføre til. <a href="/registerFlokk">Registrer en ny flokk</a> først.
+                </div>
+                <% } %>
+
+                <div class="form-message" id="transferMessage"></div>
+                <button type="submit" class="submitBtn" <%= flokker.length === 0 ? 'disabled' : '' %>>Overfør Reinsdyr</button>
+            </form>
+            <p class="form-footer">
+                <a href="/profile" class="back-link">&larr; Tilbake til profil</a>
+            </p>
+        </div>
+    </main>
+</body>
+<%- include('components/footer.ejs') %>
