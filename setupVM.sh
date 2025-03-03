@@ -36,7 +36,7 @@ npm install -g pm2
 
 # --- 7. Install nginx ---
 echo "Installing nginx..."
-sudo apt-get install -y nginx
+sudo DEBIAN_FRONTEND=noninteractive apt-get install -y nginx
 
 # --- 8. Create nginx configuration ---
 echo "Creating nginx configuration..."
