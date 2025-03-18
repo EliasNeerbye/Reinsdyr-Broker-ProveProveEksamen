@@ -1,139 +1,41 @@
-/**
- * Script to initialize complete test data:
- * 1. Create all Beiteområde documents
- * 2. Create two owners
- * 3. Create two herds for each owner
- * 4. Create 20 reindeer for each herd
- */
 require("dotenv").config();
 
 const mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
 const { v4: uuidv4 } = require("uuid");
 
-// Import all required models
 const Beiteområde = require("./models/Beiteområde");
 const Eier = require("./models/Eier");
 const Flokk = require("./models/Flokk");
 const Reinsdyr = require("./models/Reinsdyr");
 
-// Database connection parameters
 const DB_URI =
     process.env.PROD_TRUE === "true"
         ? `mongodb://${process.env.MONGO_USER}:${process.env.MONGO_PWD}@${process.env.MONGO_IP}/reindeerBroker`
         : `mongodb://${process.env.MONGO_IP}/reindeerBroker`;
 
-// Reindeer names
 const reinsdyrNavn = [
-    "Blitzen",
-    "Dasher",
-    "Dancer",
-    "Prancer",
-    "Vixen",
-    "Comet",
-    "Cupid",
-    "Donner",
-    "Rudolf",
-    "Svenn",
-    "Olav",
-    "Nils",
-    "Kari",
-    "Erik",
-    "Freya",
-    "Thor",
-    "Loki",
-    "Odin",
-    "Frigg",
-    "Balder",
-    "Idunn",
-    "Heimdall",
-    "Siv",
-    "Frøy",
-    "Frøya",
-    "Njord",
-    "Skade",
-    "Tyr",
-    "Ull",
-    "Brage",
-    "Vale",
-    "Vidar",
-    "Åsa",
-    "Magni",
-    "Modi",
-    "Rind",
-    "Sigyn",
-    "Forseti",
-    "Eir",
-    "Sjofn",
-    "Lofn",
-    "Vor",
-    "Syn",
-    "Hlin",
-    "Saga",
-    "Hel",
-    "Jord",
-    "Nanna",
-    "Gefjon",
-    "Ran",
-    "Gerd",
-    "Fulla",
-    "Atle",
-    "Snorre",
-    "Harald",
-    "Magnus",
-    "Gro",
-    "Ingrid",
-    "Birger",
-    "Sigrid",
-    "Nora",
-    "Håkon",
-    "Gunnar",
-    "Astrid",
+    "Blitzen", "Dasher", "Dancer", "Prancer", "Vixen", "Comet", "Cupid", "Donner", "Rudolf", "Svenn", 
+    "Olav", "Nils", "Kari", "Erik", "Freya", "Thor", "Loki", "Odin", "Frigg", "Balder", 
+    "Idunn", "Heimdall", "Siv", "Frøy", "Frøya", "Njord", "Skade", "Tyr", "Ull", "Brage", 
+    "Vale", "Vidar", "Åsa", "Magni", "Modi", "Rind", "Sigyn", "Forseti", "Eir", "Sjofn", 
+    "Lofn", "Vor", "Syn", "Hlin", "Saga", "Hel", "Jord", "Nanna", "Gefjon", "Ran", 
+    "Gerd", "Fulla", "Atle", "Snorre", "Harald", "Magnus", "Gro", "Ingrid", "Birger", "Sigrid", 
+    "Nora", "Håkon", "Gunnar", "Astrid"
 ];
 
-// Flokk names
 const flokkNavn = [
-    "Nordlys",
-    "Midnattsol",
-    "Snøfnugg",
-    "Isbre",
-    "Fjelltopp",
-    "Bjørkeskog",
-    "Elvebris",
-    "Vidde",
-    "Tundra",
-    "Fjord",
-    "Polarstjerne",
-    "Taiga",
-    "Aurora",
-    "Permafrost",
-    "Reinrose",
-    "Kantarell",
-    "Måneskin",
+    "Nordlys", "Midnattsol", "Snøfnugg", "Isbre", "Fjelltopp", "Bjørkeskog", "Elvebris", 
+    "Vidde", "Tundra", "Fjord", "Polarstjerne", "Taiga", "Aurora", "Permafrost", 
+    "Reinrose", "Kantarell", "Måneskin"
 ];
 
-// Merke names
 const merkeNavn = [
-    "Dobbel V",
-    "Trekantet Snitt",
-    "Høyre Spiss",
-    "Venstre Bunn",
-    "Midtdelt",
-    "Kronekryss",
-    "Stjernesnitt",
-    "Piltegn",
-    "Ringmerke",
-    "Dobbeltkryss",
-    "Flaggmerke",
-    "Bølgelinje",
-    "Spiralmerke",
-    "Solsymbol",
-    "Månefase",
-    "Trippelpunkt",
-    "Triangelhakk",
+    "Dobbel V", "Trekantet Snitt", "Høyre Spiss", "Venstre Bunn", "Midtdelt", "Kronekryss", 
+    "Stjernesnitt", "Piltegn", "Ringmerke", "Dobbeltkryss", "Flaggmerke", "Bølgelinje", 
+    "Spiralmerke", "Solsymbol", "Månefase", "Trippelpunkt", "Triangelhakk"
 ];
 
-// Owner data
 const eiere = [
     {
         navn: "Johan Nilsen",
@@ -151,7 +53,6 @@ const eiere = [
     },
 ];
 
-// Wait for a keypress to continue
 async function waitForKeypress(message) {
     const readline = require("readline");
     const rl = readline.createInterface({
@@ -169,12 +70,10 @@ async function waitForKeypress(message) {
 
 async function initializeDatabase() {
     try {
-        // Connect to MongoDB
         console.log("Connecting to MongoDB...");
         await mongoose.connect(DB_URI);
         console.log("Connected to MongoDB successfully");
 
-        // Check if database already has content
         const beiteCount = await Beiteområde.countDocuments();
         const eierCount = await Eier.countDocuments();
         const flokkCount = await Flokk.countDocuments();
@@ -195,27 +94,22 @@ async function initializeDatabase() {
             }
         }
 
-        // STEP 1: Create Beiteområder
         console.log("\n===== CREATING BEITEOMRÅDER =====");
         const beiteområder = await createBeiteområder();
         console.log(`Created ${beiteområder.length} beiteområder`);
 
-        // STEP 2: Create Eiere (Owners)
         console.log("\n===== CREATING EIERE (OWNERS) =====");
         const createdEiere = await createEiere();
         console.log(`Created ${createdEiere.length} eiere (owners)`);
 
-        // STEP 3: Create Flokker (Herds)
         console.log("\n===== CREATING FLOKKER (HERDS) =====");
         const createdFlokker = await createFlokker(createdEiere, beiteområder);
         console.log(`Created ${createdFlokker.length} flokker (herds)`);
 
-        // STEP 4: Create Reinsdyr (Reindeer)
         console.log("\n===== CREATING REINSDYR (REINDEER) =====");
         const createdReinsdyr = await createReinsdyr(createdFlokker);
         console.log(`Created ${createdReinsdyr.length} reinsdyr (reindeer)`);
 
-        // Summary
         console.log("\n===== DATABASE INITIALIZATION COMPLETE =====");
         console.log("Created:");
         console.log(`- ${beiteområder.length} beiteområder`);
@@ -223,7 +117,6 @@ async function initializeDatabase() {
         console.log(`- ${createdFlokker.length} flokker (herds)`);
         console.log(`- ${createdReinsdyr.length} reinsdyr (reindeer)`);
 
-        // Show the created owners with their credentials
         console.log("\n===== OWNER CREDENTIALS =====");
         createdEiere.forEach((eier, index) => {
             console.log(`Owner ${index + 1}:`);
@@ -237,15 +130,11 @@ async function initializeDatabase() {
     } catch (error) {
         console.error("Error initializing database:", error);
     } finally {
-        // Disconnect from MongoDB
         await mongoose.disconnect();
         console.log("Disconnected from MongoDB");
     }
 }
 
-/**
- * Utility function to prompt for confirmation
- */
 function confirmContinue(message) {
     const readline = require("readline");
     const rl = readline.createInterface({
@@ -261,11 +150,7 @@ function confirmContinue(message) {
     });
 }
 
-/**
- * Create all Beiteområde documents
- */
 async function createBeiteområder() {
-    // Get the primary grazing areas mapping
     const BEITEOMRÅDE_FYLKER_MAPPING = {
         Sør: ["Trøndelag", "Nordland", "Jämtland", "Västernorrland"],
         Ume: ["Västerbotten"],
@@ -281,10 +166,8 @@ async function createBeiteområder() {
 
     const beiteområder = [];
 
-    // Create a document for each primary area
     for (const area of Object.keys(BEITEOMRÅDE_FYLKER_MAPPING)) {
         try {
-            // Check if this area already exists
             const existing = await Beiteområde.findOne({ primærBeiteområde: area });
 
             if (existing) {
@@ -293,11 +176,9 @@ async function createBeiteområder() {
                 continue;
             }
 
-            // Create new Beiteområde document
             const newArea = new Beiteområde({
                 primærBeiteområde: area,
-                // fylker will be auto-populated by the pre-save hook
-                flokker: [], // Initially empty array of flokker (herds)
+                flokker: [],
             });
 
             await newArea.save();
@@ -311,16 +192,12 @@ async function createBeiteområder() {
     return beiteområder;
 }
 
-/**
- * Create owners
- */
 async function createEiere() {
     const createdEiere = [];
-    const saltRounds = 10; // Use an appropriate value here
+    const saltRounds = 10;
 
     for (const eierData of eiere) {
         try {
-            // Check if this owner already exists
             const existing = await Eier.findOne({ epost: eierData.epost });
 
             if (existing) {
@@ -329,20 +206,16 @@ async function createEiere() {
                 continue;
             }
 
-            // Hash the password
             const hashedPassword = await bcrypt.hash(eierData.passord, saltRounds);
-
-            // Clean the phone number
             const cleanedPhone = eierData.telefon.replace(/\D/g, "");
 
-            // Create a new owner
             const newEier = new Eier({
                 navn: eierData.navn,
                 epost: eierData.epost,
                 passord: hashedPassword,
                 telefon: cleanedPhone,
                 kontaktspråk: eierData.kontaktspråk,
-                flokker: [], // Initially empty array of herds
+                flokker: [],
             });
 
             await newEier.save();
@@ -356,17 +229,20 @@ async function createEiere() {
     return createdEiere;
 }
 
-/**
- * Create herds for each owner
- */
 async function createFlokker(eiere, beiteområder) {
     const createdFlokker = [];
+    const merkeBildeLenker = [
+        `/assets/icons/favicon.ico`,
+        `https://img.freepik.com/free-vector/cute-dino-dracula-vampire-cartoon-vector-icon-illustration-animal-holiday-icon-isolated-flat-vector_138676-11365.jpg?w=740`,
+        `https://img.freepik.com/free-vector/cute-dinosaur-listening-music-with-headset-bring-backpack-cartoon-vector-icon-illustration-flat_138676-14296.jpg?w=740`,
+        `https://img.freepik.com/free-vector/cute-cool-boy-dabbing-pose-cartoon-vector-icon-illustration-people-fashion-icon-concept-isolated_138676-5680.jpg?w=740`
+    ];
 
-    // Create 2 herds for each owner
+    let currentEier = 0;
+
     for (const eier of eiere) {
         for (let i = 0; i < 2; i++) {
             try {
-                // Generate a unique name and serienummer for the herd
                 const flokkNavnIndex = Math.floor(Math.random() * flokkNavn.length);
                 const merkeNavnIndex = Math.floor(Math.random() * merkeNavn.length);
                 const flokkSerienummer = `F-${uuidv4().substring(0, 8)}`;
@@ -374,14 +250,12 @@ async function createFlokker(eiere, beiteområder) {
                 const navn = `${flokkNavn[flokkNavnIndex]} ${i + 1}`;
                 const merke = `${merkeNavn[merkeNavnIndex]} ${i + 1}`;
 
-                // Find appropriate beiteområde based on eier's kontaktspråk
                 const beiteområde =
                     beiteområder.find((b) => b.primærBeiteområde === eier.kontaktspråk) || beiteområder[Math.floor(Math.random() * beiteområder.length)];
 
-                // Create a mock merkeBildelenke (in a real app, you would have actual images)
-                const merkeBildelenke = `/assets/icons/favicon.ico`;
+                const merkeBildelenke = merkeBildeLenker[i+currentEier];
+                console.log(`Current i: ${i+currentEier}, Current BildeLenke${merkeBildelenke}`);
 
-                // Create the new herd
                 const nyFlokk = new Flokk({
                     eierId: eier._id,
                     flokkNavn: navn,
@@ -389,16 +263,14 @@ async function createFlokker(eiere, beiteområder) {
                     merkeNavn: merke,
                     merkeBildelenke: merkeBildelenke,
                     beiteområde: beiteområde._id,
-                    reinsdyr: [], // Initially empty array of reindeer
+                    reinsdyr: [],
                 });
 
                 await nyFlokk.save();
 
-                // Update the owner with the new herd
                 eier.flokker.push(nyFlokk._id);
                 await eier.save();
 
-                // Update the beiteområde with the new herd
                 beiteområde.flokker.push(nyFlokk._id);
                 await beiteområde.save();
 
@@ -408,34 +280,28 @@ async function createFlokker(eiere, beiteområder) {
                 console.error(`Error creating Flokk (herd) for eier ${eier.navn}:`, error.message);
             }
         }
+        currentEier = 2;
     }
 
     return createdFlokker;
 }
 
-/**
- * Create reindeer for each herd
- */
 async function createReinsdyr(flokker) {
     const createdReinsdyr = [];
 
-    // Create 20 reindeer for each herd
     for (const flokk of flokker) {
         for (let i = 0; i < 20; i++) {
             try {
-                // Generate a unique name and serienummer for the reindeer
                 const reinsdyrNavnIndex = Math.floor(Math.random() * reinsdyrNavn.length);
                 const navn = `${reinsdyrNavn[reinsdyrNavnIndex]} ${i + 1}`;
                 const serienummer = `R-${uuidv4().substring(0, 8)}`;
 
-                // Generate a random birthdate in the last 10 years
                 const today = new Date();
                 const tenYearsAgo = new Date();
                 tenYearsAgo.setFullYear(today.getFullYear() - 10);
 
                 const birthDate = new Date(tenYearsAgo.getTime() + Math.random() * (today.getTime() - tenYearsAgo.getTime()));
 
-                // Create the new reindeer
                 const nyReinsdyr = new Reinsdyr({
                     serienummer: serienummer,
                     navn: navn,
@@ -445,11 +311,9 @@ async function createReinsdyr(flokker) {
 
                 await nyReinsdyr.save();
 
-                // Update the herd with the new reindeer
                 flokk.reinsdyr.push(nyReinsdyr._id);
                 await flokk.save();
 
-                // Log every 5th reindeer to avoid too much console output
                 if (i % 5 === 0) {
                     console.log(`Created reindeer ${i + 1}/20 for herd ${flokk.flokkNavn}`);
                 }
@@ -465,7 +329,6 @@ async function createReinsdyr(flokker) {
     return createdReinsdyr;
 }
 
-// Execute the initialization function
 initializeDatabase()
     .then(() => console.log("Database initialization completed"))
     .catch((err) => console.error("Database initialization failed:", err));
